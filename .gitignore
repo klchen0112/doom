@@ -1,0 +1,4 @@
+.auctex-auto
+librime
+*.sh
+custom.el
