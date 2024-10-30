@@ -1481,7 +1481,7 @@ Refer to `org-agenda-prefix-format' for more information."
 :ID:       8d800b39-c8e6-4423-9cc8-cae91df94f67
 :END:
 #+begin_src emacs-lisp :tangle packages.el
-;;(package! sis)
+;; (package! sis)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -1516,8 +1516,8 @@ Refer to `org-agenda-prefix-format' for more information."
 :ID:       e3d48ce3-a022-4f8e-8455-0f2c7856d579
 :END:
 #+begin_src emacs-lisp :tangle packages.el
-;;(package! rime :built-in t)
-;; (package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "99558c033d5c8d4cc4d452959445a099fc71f898")
+(package! rime :built-in t)
+(package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
 #+end_src
 *** rime init
 :PROPERTIES:
@@ -1525,23 +1525,24 @@ Refer to `org-agenda-prefix-format' for more information."
 :END:
 #+begin_src emacs-lisp conf :tangle config.el
 
-;;(use-package! rime
-;;  :defer t
-;;  :bind
-;;  (:map rime-mode-map
-;;        ("S- " . 'rime-send-keybinding))
-;;  :config
-;;  (setq rime-show-candidate 'posframe)
-;;  (setq rime-show-preedit 'inline)
-;;  (setq default-input-method "rime")
-;;  (setq rime-inline-ascii-trigger 'shift-r)
-;;  (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
-;;)
+(use-package! rime
+ :defer t
+ :bind
+ (:map rime-mode-map
+       ("S- " . 'rime-send-keybinding))
+ :config
+ (setq rime-user-data-dir (concat doom-data-dir "Rime"))
+ (setq rime-show-candidate 'posframe)
+ (setq rime-show-preedit 'inline)
+ (setq default-input-method "rime")
+ (setq rime-inline-ascii-trigger 'shift-r)
+ (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
+)
 
-;; (use-package rime-regexp
-;;   :defer t
-;;   :config
-;;   (rime-regexp-mode t))
+(use-package rime-regexp
+  :defer t
+  :config
+  (rime-regexp-mode t))
 
 #+end_src
 * completion

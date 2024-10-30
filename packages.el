@@ -42,10 +42,10 @@
 ;;(package! nursery
 ;;     :recipe (:host github :repo "chrisbarrett/nursery"))
 
-;;(package! sis)
+;; (package! sis)
 
-;;(package! rime :built-in t)
-;; (package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "99558c033d5c8d4cc4d452959445a099fc71f898")
+(package! rime :built-in t)
+(package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
 
 ;;(package! tempel)
 ;;(package! tempel-collection)
