@@ -142,8 +142,8 @@
        ;;beancount         ; mind the GAAP
        (cc +lsp
            ;; C > C++ == 1
-           ;;+tree-sitter
-           )
+           +tree-sitter
+        )
        ;;(clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -155,7 +155,7 @@
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        (emacs-lisp; drown in parentheses
-        ;;+tree-sitter
+        +tree-sitter
         )
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
@@ -219,7 +219,7 @@
                +cpython
                ;; (if (not IS-MAC) +conda)
                +poetry
-               +tree-sitter
+               ;;+tree-sitter
                )            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
