@@ -134,10 +134,6 @@
         doom-serif-font (font-spec :family "Cascadia Code"  :size 23)))
 )
 
-(use-package! info-colors
-  :hook (Info-selection-hook . info-colors-fontify-node)
-  )
-
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:

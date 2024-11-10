@@ -272,9 +272,6 @@
        :config
        ;; literate
        (default +bindings +smartparens))
-
-;;TODO remove add to list
-;;(add-to-list 'load-path (concat doom-emacs-dir ".local/straight/repos/nursery/lisp"))
 #+end_src
 * packages
 :PROPERTIES:
@@ -479,14 +476,9 @@
 :ID:       918efa68-0a34-4e90-ba5f-305b628bbb7b
 :END:
 #+begin_src emacs-lisp :tangle packages.el
-(package! info-colors)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! info-colors
-  :hook (Info-selection-hook . info-colors-fontify-node)
-  )
-
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
