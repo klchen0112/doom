@@ -739,7 +739,7 @@ Refer to `org-agenda-prefix-format' for more information."
  :config
  (sis-ism-lazyman-config
          "com.apple.keylayout.ABC"
-         "org.fcitx.inputmethod.Fcitx5"
+         "org.fcitx.inputmethod.Fcitx5.fcitx5"
  )
   ;; enable the /cursor color/ mode
   (sis-global-cursor-color-mode t)
