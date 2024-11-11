@@ -1991,6 +1991,8 @@ use dash open app dash
 (package! git-link)
 ;; magti file icons
 (package! magit-file-icons)
+
+(package! git-auto-commit-mode)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
