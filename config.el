@@ -733,47 +733,42 @@ Refer to `org-agenda-prefix-format' for more information."
 ;;  (org-roam-slipbox-buffer-identification-mode +1)
 ;;  (org-roam-slipbox-tag-mode +1))
 
-;;(use-package! sis
-;;  ;; :hook
-;;  ;; enable the /context/ and /inline region/ mode for specific buffers
-;;  ;; (((text-mode prog-mode) . sis-context-mode)
-;;  ;;  ((text-mode prog-mode) . sis-inline-mode))
-;;  :after meow
-;;  :config
-;;  ;; For MacOS
-;;  (sis-ism-lazyman-config
-;;   ;; English input source may be: "ABC", "US" or another one.
-;;   ;; "com.apple.keylayout.ABC"
-;;   "com.apple.keylayout.ABC"
-;;   ;; Other language input source: "rime", "sogou" or another one.
-;;   ;; "im.rime.inputmethod.Squirrel.Rime"
-;;   "im.rime.inputmethod.Squirrel.Hans")
-;;  (add-hook 'meow-insert-exit-hook #'sis-set-english)
-;;  (add-hook 'meow-insert-enter-hook #'sis-set-english)
-;;  (add-to-list 'sis-context-hooks 'meow-insert-exit-hook)
-;;  (add-to-list 'sis-context-hooks 'meow-insert-enter-hook)
-;;  (add-to-list 'sis-respect-minibuffer-triggers (cons 'org-roam-node-find (lambda () 'other)))
-;;  (add-to-list 'sis-respect-minibuffer-triggers (cons 'org-roam-node-insert (lambda () 'other)))
-;;)
-
-(use-package! rime
- :defer t
- :bind
- (:map rime-mode-map
-       ("S- " . 'rime-send-keybinding))
+(use-package! sis
+ :hook
+ (meow-insert-exit-hook . sis-set-english)
  :config
- (setq rime-user-data-dir (concat doom-data-dir "Rime"))
- (setq rime-show-candidate 'posframe)
- (setq rime-show-preedit 'inline)
- (setq default-input-method "rime")
- (setq rime-inline-ascii-trigger 'shift-r)
- (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
+ (sis-ism-lazyman-config
+         "com.apple.keylayout.ABC"
+         "org.fcitx.inputmethod.Fcitx5"
+ )
+  ;; enable the /cursor color/ mode
+  (sis-global-cursor-color-mode t)
+  ;; enable the /respect/ mode
+  (sis-global-respect-mode t)
+  ;; enable the /context/ mode for all buffers
+  (sis-global-context-mode t)
+  ;; enable the /inline english/ mode for all buffers
+  (sis-global-inline-mode t)
 )
 
-(use-package rime-regexp
-  :defer t
-  :config
-  (rime-regexp-mode t))
+;; (use-package! rime
+;;  :defer t
+;;  :bind
+;;  (:map rime-mode-map
+;;        ("S- " . 'rime-send-keybinding))
+;;  :config
+;;  (setq rime-user-data-dir (concat doom-data-dir "Rime"))
+;;  (setq rime-show-candidate 'posframe)
+;;  (setq rime-show-preedit 'inline)
+;;  (setq default-input-method "rime")
+;;  (setq rime-inline-ascii-trigger 'shift-r)
+;;  (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
+;; )
+
+;; (use-package rime-regexp
+;;   :defer t
+;;   :config
+;;   (rime-regexp-mode t))
 
 ;; Configure Tempel
 ;;(use-package! tempel
