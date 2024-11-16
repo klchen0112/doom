@@ -13,8 +13,6 @@
 
 (package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) :pin "7bea66de1b26d3f3f1cf9e940b269809c0c531b9")
 
-(package! meow)
-
 (package! dired-preview)
 
 ;;(package! pangu-spacing)
