@@ -1273,7 +1273,7 @@ Refer to `org-agenda-prefix-format' for more information."
  (meow-insert-exit-hook . sis-set-english)
  :config
  (sis-ism-lazyman-config
-         "com.apple.keylayout.ABC"
+         "com.apple.keylayout.UnicodeHexInput"
          "org.fcitx.inputmethod.Fcitx5.fcitx5"
  )
   ;; enable the /cursor color/ mode
