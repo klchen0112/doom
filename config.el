@@ -1092,4 +1092,7 @@ Refer to `org-agenda-prefix-format' for more information."
 ;;(global-activity-watch-mode)
 ;;)
 
-(use-package! exec-path-from-shell)
+(use-package! exec-path-from-shell
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-initialize)
+)
