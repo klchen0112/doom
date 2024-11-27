@@ -1738,11 +1738,11 @@ use dash open app dash
 #+end_src
 * AI+X
 ** org ai
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle packages.el
 (package! org-ai)
 #+end_src
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle config.el
 (use-package! org-ai
   ;;:commands (org-ai-mode org-ai-global-mode)
   ;; :hook (org-mode . org-ai-mode)

@@ -80,6 +80,8 @@
 
 (package! telega :built-in t)
 
+(package! org-ai)
+
 (package! alert)
 
 ;; 获得当前的repo commit的连接

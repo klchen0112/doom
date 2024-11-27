@@ -1048,6 +1048,18 @@ Refer to `org-agenda-prefix-format' for more information."
   ;;(setq telega-server-libs-prefix)
 )
 
+(use-package! org-ai
+  ;;:commands (org-ai-mode org-ai-global-mode)
+  ;; :hook (org-mode . org-ai-mode)
+  :after org
+  :defer t
+  ;; :init
+  ;; (org-ai-global-mode)
+  :config
+  ;;(setq org-ai-default-chat-model "gpt-4") ; if you are on the gpt-4 beta:
+  (org-ai-install-yasnippets)
+)
+
 (use-package! alert
   :defer t
   :config
