@@ -231,6 +231,9 @@
 ;;  (setq pangu-spacing-real-insert-separtor t)
 ;;)
 
+(use-package! treesit-auto)
+(use-package! treesit-fold)
+
 (setq my/bib (concat "~/org/" "academic.bib"))
 (setq my/notes (concat "~/org/" "references"))
 (setq my/library-files "~/Documents/org-pdfs")
