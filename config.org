@@ -777,7 +777,7 @@ citar need vertico
               "(provide 'org-version)\n"))))
   :pin nil)
 
-(unpin! org)
+;;(unpin! org)
 #+end_src
 ** 设置 org-variable
 :PROPERTIES:
