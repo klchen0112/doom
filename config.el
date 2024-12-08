@@ -100,14 +100,14 @@
 ;;      doom-symbol-font (font-spec :family "Symbola" :size 14)
 ;;      doom-serif-font (font-spec :family "IBM Plex Serif"  :size 17)
 ;;      )
-(setq nerd-icons-font-names '("SymbolsNerdFontMono-Regular.ttf"))
+
 (setq use-default-font-for-symbols nil)(cond
   ((or IS-MAC IS-LINUX)
-    (setq doom-font (font-spec :family "Iosevka"   :size 14)
+    (setq doom-font (if IS-MAC (font-spec :family "SF Mono"  :size 14) (font-spec :family "Iosevka" :size 14))
           ;; doom-big-font (font-spec :family "Iosevka"  :size 28)
-          doom-variable-pitch-font (font-spec :family "CMU Typewriter Text"  :size 17)
+          doom-variable-pitch-font (font-spec :family "CMU Typewriter Text"  :size 18)
           ;;doom-unicode-font (font-spec :family "FZSongKeBenXiuKai-R-GBK" :weight 'light :slant 'italic :size 21)
-          doom-serif-font (font-spec :family "IBM Plex Serif"  :size 17))
+          doom-serif-font (font-spec :family "IBM Plex Serif"  :size 18))
     (add-hook!  'after-setting-font-hook
           ;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴
           (set-fontset-font t 'symbol   (font-spec :family "Apple Color Emoji"  ))
