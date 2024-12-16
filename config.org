@@ -233,7 +233,7 @@
                +pyenv
                +cpython
                ;; (if (not IS-MAC) +conda)
-               +poetry
+               ;;+poetry
                ;;+tree-sitter
                )            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
