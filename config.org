@@ -780,8 +780,8 @@ citar need vertico
 ;;(unpin! org)
 #+end_src
 
-#+begin_src emacs-lisp :tangle packages.el
-(use-package org-latex-preview
+#+begin_src emacs-lisp :tangle config.el
+(use-package! org-latex-preview
   :hook (org-mode . org-latex-preview-auto-mode)
   :config
   ;; Increase preview width
@@ -796,9 +796,7 @@ citar need vertico
   ;; org-fragtog. (Remember to turn off/uninstall org-fragtog.)
 
   ;; Block C-n, C-p etc from opening up previews when using auto-mode
-  (setq org-latex-preview-auto-ignored-commands
-        '(next-line previous-line mwheel-scroll
-          scroll-up-command scroll-down-command))
+  (setq org-latex-preview-auto-ignored-commands '(next-line previous-line mwheel-scroll scroll-up-command scroll-down-command))
 
   ;; Enable consistent equation numbering
   (setq org-latex-preview-numbered t)
@@ -811,19 +809,6 @@ citar need vertico
   ;; More immediate live-previews -- the default delay is 1 second
   (setq org-latex-preview-live-debounce 0.25))
 #+end_src
-** 设置 org-variable
-:PROPERTIES:
-:ID:       9d20983d-4b67-409e-a118-e8131012e989
-:END:
-#+begin_src emacs-lisp conf :tangle config.el
-
-(setq org_notes  "~/org/"
-      org-directory org_notes)
-
-(setq ;;org-roam-database-connector 'sqlite-builtin
- org-roam-directory "~/org"
- org-roam-file-extensions '("org"))
-#+end_src
 ** 设置 org 常用设置
 :PROPERTIES:
 :ID:       3fcd76df-a2bc-4291-9012-9ed3d1acc490
@@ -835,6 +820,7 @@ citar need vertico
 (use-package! org
   :defer t
   :config
+  (setq org-directory "~/org/")
   ;; pretty org files
   (setq org-auto-align-tags nil
         org-tags-column 0
@@ -844,6 +830,8 @@ citar need vertico
         org-hide-emphasis-markers t
         org-pretty-entities t
 
+        org-roam-directory "~/org"
+        org-roam-file-extensions '("org")
   )
   (setq org-ellipsis "...")
   (setq  org-adapt-indentation nil)
