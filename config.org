@@ -331,6 +331,10 @@
 ;;(pixel-scroll-precision-mode 1)
 ;;(setq pixel-scroll-precision-large-scroll-height 60
 ;;     pixel-scroll-precision-interpolation-factor 30.0)
+
+(setq
+   org-roam-directory "~/org"
+   org-roam-file-extensions '("org"))
 #+end_src
 ** exec path
 #+begin_src emacs-lisp :tangle config.el
@@ -1029,10 +1033,6 @@ citar need vertico
         )
   )
 
-(after! org-roam
-  (setq
-   org-roam-directory "~/org"
-   org-roam-file-extensions '("org")))
 
 (use-package! websocket
   :defer t

@@ -43,6 +43,10 @@
 ;;(setq pixel-scroll-precision-large-scroll-height 60
 ;;     pixel-scroll-precision-interpolation-factor 30.0)
 
+(setq
+   org-roam-directory "~/org"
+   org-roam-file-extensions '("org"))
+
 (setq shell-file-name (executable-find "bash"))
 (setq-default vterm-shell (executable-find "fish"))
 
@@ -513,10 +517,6 @@
         )
   )
 
-(after! org-roam
-  (setq
-   org-roam-directory "~/org"
-   org-roam-file-extensions '("org")))
 
 (use-package! websocket
   :defer t
