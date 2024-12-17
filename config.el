@@ -372,9 +372,7 @@
         org-hide-emphasis-markers t
         org-pretty-entities t
 
-        org-roam-directory "~/org"
-        org-roam-file-extensions '("org")
-  )
+        )
   (setq org-ellipsis "...")
   (setq  org-adapt-indentation nil)
   (setq  org-hidden-keywords nil)
@@ -408,7 +406,7 @@
   (org-ellipsis ((t (:inherit 'fixed-pitch))))
   (org-property-value ((t (:inherit 'fixed-pitch))))
   (org-special-keyword ((t (:inherit 'fixed-pitch))))
-)
+  )
 
 (use-package! org-modern
   :after org
@@ -515,6 +513,10 @@
         )
   )
 
+(after! org-roam
+  (setq
+   org-roam-directory "~/org"
+   org-roam-file-extensions '("org")))
 
 (use-package! websocket
   :defer t
