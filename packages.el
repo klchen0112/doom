@@ -83,7 +83,7 @@
 ;;(package! ts-docstr
 ;;  :recipe (:host github :repo "emacs-vs/ts-docstr" :files (:defaults "langs/*.el")))
 
-(if IS-MAC (package! micromamba))
+;; (if IS-MAC (package! micromamba))
 
 (if IS-MAC (package! dash-at-point))
 

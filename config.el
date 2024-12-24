@@ -919,9 +919,9 @@ Refer to `org-agenda-prefix-format' for more information."
   (setq lsp-ui-doc-show-with-cursor t)
 )
 
-(if IS-MAC
-  (use-package! micromamba)
-)
+;; (if IS-MAC
+  ;; (use-package! micromamba)
+;; )
 
 (setq font-latex-match-reference-keywords
        '(;; BibLaTeX.

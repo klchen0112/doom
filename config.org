@@ -1550,14 +1550,16 @@ Refer to `org-agenda-prefix-format' for more information."
 :ID:       d4be558f-c96d-4107-a442-14fe7648ce6b
 :END:
 #+begin_src emacs-lisp :tangle packages.el
-(if IS-MAC (package! micromamba))
+;; (if IS-MAC (package! micromamba))
 #+end_src
 
 #+begin_src emacs-lisp conf :tangle config.el
-(if IS-MAC
-  (use-package! micromamba)
-)
+;; (if IS-MAC
+  ;; (use-package! micromamba)
+;; )
 #+end_src
+*** ruff
+
 ** Latex mode
 *** Latex Preview
 **** fontify
@@ -1712,6 +1714,7 @@ use dash open app dash
                                                 (graphviz-turn-off-live-preview)
                                               (graphviz-turn-on-live-preview)))))
 #+end_src
+
 * reader
 ** org noter and nov
 :PROPERTIES:
