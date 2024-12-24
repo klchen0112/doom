@@ -927,6 +927,10 @@ Refer to `org-agenda-prefix-format' for more information."
  :hook (ruff-format-on-save-mode . python-mode)
 )
 
+(use-package! pet
+  :hook (python-mode . pet-mode)
+)
+
 (setq font-latex-match-reference-keywords
        '(;; BibLaTeX.
         ("printbibliography" "[{")

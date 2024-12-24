@@ -87,6 +87,8 @@
 
 (package! ruff-format)
 
+(package! pet :recipe (:host github :repo "wyuenho/emacs-pet") :pin "c2278f9bc1c3a5070021fe3251ed09b5a468d331")
+
 (if IS-MAC (package! dash-at-point))
 
 (package! just-mode)

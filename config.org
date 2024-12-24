@@ -1568,6 +1568,16 @@ Refer to `org-agenda-prefix-format' for more information."
  :hook (ruff-format-on-save-mode . python-mode)
 )
 #+end_src
+*** virtual enviroment
+#+begin_src emacs-lisp :tangle packages.el
+(package! pet :recipe (:host github :repo "wyuenho/emacs-pet") :pin "c2278f9bc1c3a5070021fe3251ed09b5a468d331")
+#+end_src
+
+#+begin_src emacs-lisp :tangle config.el
+(use-package! pet
+  :hook (python-mode . pet-mode)
+)
+#+end_src
 ** Latex mode
 *** Latex Preview
 **** fontify
