@@ -1559,7 +1559,15 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; )
 #+end_src
 *** ruff
+#+begin_src emacs-lisp :tangle packages.el
+(package! ruff-format)
+#+end_src
 
+#+begin_src emacs-lisp :tangle config.el
+(use-package! ruff-format
+ :hook (ruff-format-on-save-mode . python-mode)
+)
+#+end_src
 ** Latex mode
 *** Latex Preview
 **** fontify

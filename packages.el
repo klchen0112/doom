@@ -85,6 +85,8 @@
 
 ;; (if IS-MAC (package! micromamba))
 
+(package! ruff-format)
+
 (if IS-MAC (package! dash-at-point))
 
 (package! just-mode)

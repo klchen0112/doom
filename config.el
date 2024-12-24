@@ -923,6 +923,10 @@ Refer to `org-agenda-prefix-format' for more information."
   ;; (use-package! micromamba)
 ;; )
 
+(use-package! ruff-format
+ :hook (ruff-format-on-save-mode . python-mode)
+)
+
 (setq font-latex-match-reference-keywords
        '(;; BibLaTeX.
         ("printbibliography" "[{")
