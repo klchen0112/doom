@@ -54,7 +54,6 @@
 ;;(unpin! org-roam-ui)
 
 (package! consult-org-roam)
-(package! emacsql-sqlite-builtin)
 
 (package! org-roam-timestamps)
 

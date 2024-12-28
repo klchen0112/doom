@@ -975,7 +975,6 @@ citar need vertico
 ;;(unpin! org-roam-ui)
 
 (package! consult-org-roam)
-(package! emacsql-sqlite-builtin)
 
 #+end_src
 1. 设置org-roam templates 可以与 org-capture 混合使用
