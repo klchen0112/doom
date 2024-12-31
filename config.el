@@ -502,8 +502,7 @@
   )
 
 
-(use-package! websocket
-  :after org-roam)
+
 
 (use-package! org-roam-ui
   :after org-roam ;; or :after org
@@ -638,7 +637,27 @@ Refer to `org-agenda-prefix-format' for more information."
           (s-truncate len (s-pad-right len " " result))
         result))))
 
-
+(use-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-agenda-prefix-format
+        '((agenda . " %i %(bmg/vulpea-agenda-category 12)%?-12t% s")
+          (todo . " %i %(bmg/vulpea-agenda-category 12) ")
+          (tags . " %i %(bmg/vulpea-agenda-category 12) ")
+          (search . " %i %(bmg/vaulpea-agenda-category 12) ")))
+   (setq org-agenda-time-grid '((daily today require-timed)
+                               (800 1200 1600 2000)
+                               "......"
+                               "----------------")
+        org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-include-deadlines t
+        org-agenda-include-diary nil
+        org-agenda-block-separator nil
+        org-agenda-compact-blocks t
+        org-agenda-start-with-log-mode t
+        org-agenda-start-day nil) ;; i.e. today
+)
 ;;(use-package! org-roam-review
 ;; :commands (org-roam-review
 ;;            org-roam-review-list-by-maturity
@@ -665,7 +684,6 @@ Refer to `org-agenda-prefix-format' for more information."
   ;;)
 
 (use-package consult-org-roam
-   :ensure t
    :after org-roam
    :init
    (consult-org-roam-mode 1)

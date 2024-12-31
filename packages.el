@@ -61,6 +61,7 @@
 
 (package! vulpea)
 (package! consult-org-roam)
+(package! org-super-agenda)
 ;;TODO
 ;;(package! nursery
 ;;     :recipe (:host github :repo "chrisbarrett/nursery"))
