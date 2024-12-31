@@ -534,9 +534,6 @@
    :leader
    :prefix "n"
    :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
-#+end_#+begin_src
-
-#+end_#+begin_src
 
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea

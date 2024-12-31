@@ -1070,10 +1070,6 @@ citar need vertico
    :leader
    :prefix "n"
    :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
-#+end_#+begin_src
-
-#+end_#+begin_src
-
 #+end_src
 ** org-roam-enhance
 :PROPERTIES:
