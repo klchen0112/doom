@@ -1017,8 +1017,6 @@ citar need vertico
   )
 
 
-
-
 (use-package! org-roam-ui
   :after org-roam ;; or :after org
   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
@@ -1792,8 +1790,7 @@ use dash open app dash
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! org-anki
-:defer t)
+(use-package! org-anki)
 #+end_src
 * APP
 :PROPERTIES:
@@ -1822,7 +1819,6 @@ use dash open app dash
   ;;:commands (org-ai-mode org-ai-global-mode)
   ;; :hook (org-mode . org-ai-mode)
   :after org
-  :defer t
   ;; :init
   ;; (org-ai-global-mode)
   :config
@@ -1839,7 +1835,6 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! alert
-  :defer t
   :config
   (if IS-MAC
       (setq alert-default-style 'osx-notifier)

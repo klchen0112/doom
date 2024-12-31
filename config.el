@@ -502,8 +502,6 @@
   )
 
 
-
-
 (use-package! org-roam-ui
   :after org-roam ;; or :after org
   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
@@ -1069,8 +1067,7 @@ Refer to `org-agenda-prefix-format' for more information."
 
 ;;(use-package! mpvi)
 
-(use-package! org-anki
-:defer t)
+(use-package! org-anki)
 
 (use-package! telega
   :commands (telega)
@@ -1083,7 +1080,6 @@ Refer to `org-agenda-prefix-format' for more information."
   ;;:commands (org-ai-mode org-ai-global-mode)
   ;; :hook (org-mode . org-ai-mode)
   :after org
-  :defer t
   ;; :init
   ;; (org-ai-global-mode)
   :config
@@ -1092,7 +1088,6 @@ Refer to `org-agenda-prefix-format' for more information."
 )
 
 (use-package! alert
-  :defer t
   :config
   (if IS-MAC
       (setq alert-default-style 'osx-notifier)
