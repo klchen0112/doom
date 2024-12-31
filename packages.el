@@ -15,7 +15,7 @@
 
 (package! dired-preview)
 
-;;(package! pangu-spacing)
+(package! pangu-spacing)
 
 ;; interact with org-roam and bibtex
 (package! org-roam-bibtex)

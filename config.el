@@ -61,8 +61,6 @@
 ;;(+global-word-wrap-mode +1)
 
 (use-package! benchmark-init
-  :defer t
-  :ensure t
   ;;:config
   ;;(add-hook! 'after-init-hook 'benchmark-init/deactivate)
 )
@@ -204,7 +202,6 @@
 
 (if IS-MAC
   (use-package emt
-    :defer t
     :hook (after-init . emt-mode)
     :config
     (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
@@ -214,7 +211,6 @@
 (setq auto-save-default t)
 
 (use-package! dired-preview
-  :defer t
   :config
   ;; Default values for demo purposes
   (setq dired-preview-delay 0.7)
@@ -229,11 +225,10 @@
   ;; globally:
   (dired-preview-global-mode 1))
 
-;;(use-package! pangu-spacing
-;;  :defer t
-;;  :config
-;;  (setq pangu-spacing-real-insert-separtor t)
-;;)
+(use-package! pangu-spacing
+ :config
+ (setq pangu-spacing-real-insert-separtor t)
+)
 
 (use-package! treesit-auto)
 (use-package! treesit-fold)
@@ -243,7 +238,6 @@
 (setq my/library-files "~/Documents/org-pdfs")
 
 (use-package! citar
-  :defer t
   :config
   (setq citar-bibliography my/bib
         citar-notes-paths '("~/org/references/")
@@ -280,7 +274,6 @@
                 ))))
 
 (use-package! citar-embark
-  :defer t
   :after citar embark
   :config (citar-embark-mode)
   )
@@ -288,7 +281,6 @@
 ;; Org-Roam-Bibtex
 (use-package! org-roam-bibtex
  :after org-roam
- :defer t
  :hook
  (org-mode . org-roam-bibtex-mode)
  :custom
@@ -325,7 +317,6 @@
 
 
 (use-package! citar-org-roam
-  :defer t
   :after citar org-roam
   :hook (org-roam-mode . citar-org-roam-mode)
   :config
@@ -364,7 +355,6 @@
 ;; change `org-directory'. It must be set before org loads!
 
 (use-package! org
-  :defer t
   :config
   (setq org-directory "~/org/")
   ;; pretty org files
@@ -414,14 +404,12 @@
 
 (use-package! org-modern
   :after org
-  :defer t
   :hook (org-mode . org-modern-mode)
         (org-agenda-finalize . org-modern-agenda)
 )
 
 (use-package! org-appear
   :hook (org-mode . org-appear-mode)
-  :defer t
   :config
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
@@ -435,7 +423,6 @@
 ;; config org download
 (use-package! org-download
   :after org
-  :defer t
   :config
   (setq org-download-method 'directory)
   (setq org-download-image-dir "~/Library/Mobile Documents/com~apple~CloudDocs/Documents/org-attach")
@@ -444,7 +431,6 @@
 
 (use-package! org-agenda
   :after org
-  :defer t
   :config
   (setq org-agenda-files '("~/org/pages/TODO.org"))
   ;; 时间前导0
@@ -466,14 +452,12 @@
 
 (use-package! ox-hugo
   :after org-capture ox
-  :defer t
   :config
   (setq org-hugo-default-static-subdirectory-for-externals "img")
 )
 
 (use-package! org-roam
   :after org
-  :defer t
   :commands (org-roam-buffer
              org-roam-setup
              org-roam-capture
@@ -519,11 +503,9 @@
 
 
 (use-package! websocket
-  :defer t
   :after org-roam)
 
 (use-package! org-roam-ui
-  :defer t
   :after org-roam ;; or :after org
   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
   ;;         a hookable mode anymore, you're advised to pick something yourself
@@ -538,7 +520,6 @@
 ;;自动创建笔记的创建时间和修改时间
 (use-package! org-roam-timestamps
   :after org-roam
-  :defer t
   :config
   (org-roam-timestamps-mode)
   (setq org-roam-timestamps-parent-file t))
@@ -547,18 +528,19 @@
 (use-package! org-transclusion
   :after org
   :commands org-transclusion-mode
-  :defer t
   :init
   (map!
    :map global-map "<f12>" #'org-transclusion-add
    :leader
    :prefix "n"
    :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
+#+end_#+begin_src
+
+#+end_#+begin_src
 
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
   :after (org-agenda org-roam)
-  :defer t
   :commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
   :init
   (add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
@@ -687,7 +669,6 @@ Refer to `org-agenda-prefix-format' for more information."
 
 (use-package consult-org-roam
    :ensure t
-   :defer t
    :after org-roam
    :init
    (consult-org-roam-mode 1)
@@ -1003,7 +984,6 @@ Refer to `org-agenda-prefix-format' for more information."
 
 (if IS-MAC
 (use-package! dash-at-point
-  :defer t
   :config
  (add-to-list 'dash-at-point-mode-alist '(python-mode . "python3,django,twisted,sphinx,flask,tornado,sqlalchemy,numpy,scipy,saltcvp,torch,torchvision"))
 ))
@@ -1055,7 +1035,6 @@ Refer to `org-agenda-prefix-format' for more information."
 
 (use-package! org-noter
   :after org
-  :defer t
   :config
   (setq org-noter-notes-search-path (concat org-directory "references"))
   (setq org-noter-alway-create-frame t)
@@ -1105,10 +1084,9 @@ Refer to `org-agenda-prefix-format' for more information."
     (setq alert-default-style 'libnotify))
 )
 
-(use-package git-link :defer t)
+(use-package! git-link)
 
-(use-package magit-file-icons
-  :ensure t
+(use-package! magit-file-icons
   :after magit
   :init
   (magit-file-icons-mode 1)
@@ -1119,7 +1097,6 @@ Refer to `org-agenda-prefix-format' for more information."
   (magit-file-icons-enable-diffstat-icons t))
 
 (use-package! openwith
-:defer t
   :hook (emacs-startup . openwith-mode)
   :init
   (setq +openwith-extensions '("pdf" "jpg" "png" "jpeg" "mp4"))
