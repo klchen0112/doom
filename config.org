@@ -610,14 +610,14 @@
 #+end_src
 ** 自动在中英文间添加空格
 #+begin_src emacs-lisp :tangle packages.el
-(package! pangu-spacing)
+;; (package! pangu-spacing)
 #+end_src
 
 #+begin_src emacs-lisp :tangle yes
-(use-package! pangu-spacing
- :config
- (setq pangu-spacing-real-insert-separtor t)
-)
+;; (use-package! pangu-spacing
+ ;; :config
+ ;; (setq pangu-spacing-real-insert-separtor t)
+;; )
 #+end_src
 ** Tree siter
 #+begin_src emacs-lisp tangle: packages.el

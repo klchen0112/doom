@@ -225,10 +225,10 @@
   ;; globally:
   (dired-preview-global-mode 1))
 
-(use-package! pangu-spacing
- :config
- (setq pangu-spacing-real-insert-separtor t)
-)
+;; (use-package! pangu-spacing
+ ;; :config
+ ;; (setq pangu-spacing-real-insert-separtor t)
+;; )
 
 (use-package! treesit-auto)
 (use-package! treesit-fold)
