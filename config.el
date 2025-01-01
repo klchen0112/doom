@@ -65,7 +65,7 @@
 
 ;; Framing Size
 ;; start the initial frame maximized
-(add-hook 'window-setup-hook #'toggle-frame-maximized)
+;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
 ;;(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
 ;; no title bar
@@ -193,7 +193,7 @@
 
 (setq menu-bar-mode t)
 
-(use-package transwin
+(use-package! transwin
   :config
   (setq transwin--current-alpha 80)
   (setq transwin-delta-alpha 5)
@@ -201,7 +201,7 @@
 )
 
 (if IS-MAC
-  (use-package emt
+  (use-package! emt
     :config
     (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
   )
@@ -401,13 +401,12 @@
   )
 
 (use-package! org-modern
+  :hook (org-mode . org-modern-mode)
   :after org
 )
 
-(add-hook 'org-mode-hook #'org-modern-mode)
-(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
-
 (use-package! org-appear
+  :hook (org-mode . org-appear-mode)
   :config
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
@@ -417,9 +416,6 @@
         org-appear-inside-latex t
         )
 )
-
-
-(add-hook 'org-mode-hook 'org-appear-mode)
 
 ;; config org download
 (use-package! org-download
@@ -535,6 +531,7 @@
 
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
+  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable))
   :after (org-agenda org-roam)
   :commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
   :init
@@ -680,10 +677,7 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; "TAB" 'magit-section-cycle
 ;; "g r" 'org-roam-review-refresh)
 ;;)
-(after! vulpea
-  (add-hook 'org-roam-db-autosync-mode-hook 'vulpea-db-autosync-enable)
-  )
-(use-package consult-org-roam
+(use-package! consult-org-roam
   :after org-roam
   :init
   (consult-org-roam-mode 1)
@@ -772,8 +766,6 @@ Refer to `org-agenda-prefix-format' for more information."
   (sis-global-context-mode t)
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t)
-  )
-(after! sis
   (add-hook 'meow-insert-exit-hook 'sis-set-english)
   )
 
@@ -921,12 +913,12 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; )
 
 (use-package! ruff-format
+ :hook (python-mode . ruff-format-on-save-mode)
 )
-(add-hook 'python-mode-hook 'ruff-format-on-save-mode)
 
 (use-package! pet
+  :hook (python-mode . pet-mode)
 )
-(add-hook 'python-mode-hook 'pet-mode)
 
 (setq font-latex-match-reference-keywords
        '(;; BibLaTeX.
@@ -993,7 +985,7 @@ Refer to `org-agenda-prefix-format' for more information."
         ("Autoref" "{")))
 
 ;; 为 latex 提供折叠大纲功能
-(use-package outline
+(use-package! outline
   :hook
   (LaTeX-mode . outline-minor-mode)
 )
@@ -1114,6 +1106,7 @@ Refer to `org-agenda-prefix-format' for more information."
   :init
   (setq +openwith-extensions '("pdf" "jpg" "png" "jpeg" "mp4"))
   :config
+  (add-hook 'emacs-startup-hook 'openwith-mode)
   (when-let (cmd (cond ((featurep :system 'macos) "open")
                        ((featurep :system 'linux) "xdg-open")
                        ((featurep :system 'windows) "start")))
@@ -1124,7 +1117,6 @@ Refer to `org-agenda-prefix-format' for more information."
               (lambda (fn &rest args)
                 (let ((process-connection-type nil))
                   (apply fn args)))))
-(add-hook 'emacs-startup-hook 'openwith-mode)
 
 ;;(use-package! activity-watch-mode
 ;;:defer t
