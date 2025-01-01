@@ -95,9 +95,6 @@
 (package! just-mode)
 (package! justl)
 
-(package! graphviz-dot-mode)
-(package! ob-blockdiag)
-
 ;;(package! org-noter :recipe (:host github :repo "org-noter/org-noter"))
 
 ;;(package! org-noter-plus :recipe (:host github :repo "yuchen-lea/org-noter-plus"))

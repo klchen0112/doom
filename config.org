@@ -182,6 +182,7 @@
        ;;gdscript          ; the language you waited for
        (go +lsp)         ; the hipster dialect
        (graphql +lsp)    ; Give queries a REST
+       (graphviz)
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
@@ -289,6 +290,8 @@
 :END:
 #+begin_src emacs-lisp conf :tangle config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;; -*- no-byte-compile: t; -*-
+;;; $DOOMDIR/packages.el
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -875,12 +878,12 @@ citar need vertico
 #+begin_src emacs-lisp conf :tangle config.el
 
 (use-package! org-modern
-  :hook (org-mode . org-modern-mode)
+  :hook ((org-mode . org-modern-mode))
   :after org
 )
 
 (use-package! org-appear
-  :hook (org-mode . org-appear-mode)
+  :hook ((org-mode . org-appear-mode))
   :config
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
@@ -1553,7 +1556,7 @@ Refer to `org-agenda-prefix-format' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! ruff-format
- :hook (python-mode . ruff-format-on-save-mode)
+ :hook ((python-mode . ruff-format-on-save-mode))
 )
 #+end_src
 *** virtual enviroment
@@ -1563,7 +1566,7 @@ Refer to `org-agenda-prefix-format' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
-  :hook (python-mode . pet-mode)
+  :hook ((python-mode . pet-mode))
 )
 #+end_src
 ** Latex mode
@@ -1640,10 +1643,8 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; 为 latex 提供折叠大纲功能
 (use-package! outline
   :hook
-  (LaTeX-mode . outline-minor-mode)
+  ((LaTeX-mode . outline-minor-mode))
 )
-#+end_#+begin_src
-
 #+end_src
 ** Doc
 :PROPERTIES:
@@ -1677,50 +1678,6 @@ use dash open app dash
   (map! :n "e" 'justl-exec-recipe))
 #+end_src
 
-** Graphviz
-#+begin_src emacs-lisp :tangle packages.el
-(package! graphviz-dot-mode)
-(package! ob-blockdiag)
-#+end_src
-
-#+begin_src emacs-lisp :tangle config.el
-(use-package! graphviz-dot-mode
-  :mode "\\.\\(diag\\|dot\\|nwdiag\\|rackdiag\\)\\'"
-  :init
-  (after! org
-    (add-to-list 'org-src-lang-modes
-                  '("dot" . graphviz-dot)))
-  :config
-  (cl-defun +format-graphviz (&key buffer scratch callback &allow-other-keys)
-    "Format graphviz graphs."
-    (with-current-buffer scratch
-      (let ((inhibit-message t)
-            (message-log-max nil))
-        (goto-char (point-min))
-        (graphviz-dot-indent-graph))
-      (funcall callback)))
-
-  (when (and (not (treesit-available-p))
-              (modulep! :lang graphviz +tree-sitter))
-    (add-hook 'graphviz-dot-mode-hook #'tree-sitter! 'append))
-  (after! tree-sitter
-    (set-tree-sitter-lang! 'graphviz-dot-mode 'dot))
-  (when (modulep! :completion company)
-    (set-company-backend! 'graphviz-dot-mode 'company-graphviz-dot-backend))
-  (setq graphviz-dot-view-command "kde-open5 %s") ;; doesn't work, need a proper viewer
-
-  (enable-auto-formatter! 'graphviz-dot-mode)
-  (set-formatter! 'graphviz-dot-mode #'+format-graphviz :modes '(graphviz-dot-mode))
-
-  (map! :map graphviz-dot-mode-map
-        :localleader
-        :desc "External view" :nv "e" #'graphviz-dot-view
-        :desc "Preview"       :nv "p" #'graphviz-dot-preview
-        :prefix ("t" . "toggle")
-        :desc "Preview"       :nv "p" (cmd! (if graphviz-dot-auto-preview-on-save
-                                                (graphviz-turn-off-live-preview)
-                                              (graphviz-turn-on-live-preview)))))
-#+end_src
 
 * reader
 ** org noter and nov
@@ -1813,7 +1770,7 @@ use dash open app dash
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-ai
   ;;:commands (org-ai-mode org-ai-global-mode)
-  ;; :hook (org-mode . org-ai-mode)
+  :hook ((org-mode . org-ai-mode))
   :after org
   ;; :init
   ;; (org-ai-global-mode)

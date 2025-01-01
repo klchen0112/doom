@@ -1,4 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;; -*- no-byte-compile: t; -*-
+;;; $DOOMDIR/packages.el
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -401,12 +403,12 @@
   )
 
 (use-package! org-modern
-  :hook (org-mode . org-modern-mode)
+  :hook ((org-mode . org-modern-mode))
   :after org
 )
 
 (use-package! org-appear
-  :hook (org-mode . org-appear-mode)
+  :hook ((org-mode . org-appear-mode))
   :config
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
@@ -913,11 +915,11 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; )
 
 (use-package! ruff-format
- :hook (python-mode . ruff-format-on-save-mode)
+ :hook ((python-mode . ruff-format-on-save-mode))
 )
 
 (use-package! pet
-  :hook (python-mode . pet-mode)
+  :hook ((python-mode . pet-mode))
 )
 
 (setq font-latex-match-reference-keywords
@@ -987,9 +989,8 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; 为 latex 提供折叠大纲功能
 (use-package! outline
   :hook
-  (LaTeX-mode . outline-minor-mode)
+  ((LaTeX-mode . outline-minor-mode))
 )
-#+end_#+begin_src
 
 (if IS-MAC
 (use-package! dash-at-point
@@ -1004,43 +1005,6 @@ Refer to `org-agenda-prefix-format' for more information."
   :defer t
   :config
   (map! :n "e" 'justl-exec-recipe))
-
-(use-package! graphviz-dot-mode
-  :mode "\\.\\(diag\\|dot\\|nwdiag\\|rackdiag\\)\\'"
-  :init
-  (after! org
-    (add-to-list 'org-src-lang-modes
-                  '("dot" . graphviz-dot)))
-  :config
-  (cl-defun +format-graphviz (&key buffer scratch callback &allow-other-keys)
-    "Format graphviz graphs."
-    (with-current-buffer scratch
-      (let ((inhibit-message t)
-            (message-log-max nil))
-        (goto-char (point-min))
-        (graphviz-dot-indent-graph))
-      (funcall callback)))
-
-  (when (and (not (treesit-available-p))
-              (modulep! :lang graphviz +tree-sitter))
-    (add-hook 'graphviz-dot-mode-hook #'tree-sitter! 'append))
-  (after! tree-sitter
-    (set-tree-sitter-lang! 'graphviz-dot-mode 'dot))
-  (when (modulep! :completion company)
-    (set-company-backend! 'graphviz-dot-mode 'company-graphviz-dot-backend))
-  (setq graphviz-dot-view-command "kde-open5 %s") ;; doesn't work, need a proper viewer
-
-  (enable-auto-formatter! 'graphviz-dot-mode)
-  (set-formatter! 'graphviz-dot-mode #'+format-graphviz :modes '(graphviz-dot-mode))
-
-  (map! :map graphviz-dot-mode-map
-        :localleader
-        :desc "External view" :nv "e" #'graphviz-dot-view
-        :desc "Preview"       :nv "p" #'graphviz-dot-preview
-        :prefix ("t" . "toggle")
-        :desc "Preview"       :nv "p" (cmd! (if graphviz-dot-auto-preview-on-save
-                                                (graphviz-turn-off-live-preview)
-                                              (graphviz-turn-on-live-preview)))))
 
 (use-package! org-noter
   :after org
@@ -1074,7 +1038,7 @@ Refer to `org-agenda-prefix-format' for more information."
 
 (use-package! org-ai
   ;;:commands (org-ai-mode org-ai-global-mode)
-  ;; :hook (org-mode . org-ai-mode)
+  :hook ((org-mode . org-ai-mode))
   :after org
   ;; :init
   ;; (org-ai-global-mode)
