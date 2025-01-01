@@ -103,7 +103,9 @@
 ;;      doom-serif-font (font-spec :family "IBM Plex Serif"  :size 17)
 ;;      )
 
-(setq use-default-font-for-symbols nil)(cond
+(setq use-default-font-for-symbols nil)
+
+(cond
   ((or IS-MAC IS-LINUX)
     (setq doom-font (if IS-MAC (font-spec :family "SF Mono"  :size 14) (font-spec :family "Iosevka" :size 14))
           ;; doom-big-font (font-spec :family "Iosevka"  :size 28)
@@ -128,7 +130,7 @@
           ;; Cyrillic: Привет, Здравствуйте, Здраво, Здравейте
           (set-fontset-font t 'cyrillic (font-spec :family "Noto Serif"         ))
   ))
-  ((:if IS-WINDOWS)
+  ((IS-WINDOWS)
     (setq doom-font (font-spec :family "Cascadia Code"  :size 23)
         doom-big-font (font-spec :family "Cascadia Code"  :size 25)
         doom-variable-pitch-font (font-spec :family "Cascadia Code" :size 23)
@@ -202,10 +204,10 @@
 
 (if IS-MAC
   (use-package emt
-    :hook (after-init . emt-mode)
     :config
     (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
   )
+  (add-hook 'after-init-hook 'emt-mode)
 )
 
 (setq auto-save-default t)
@@ -281,8 +283,6 @@
 ;; Org-Roam-Bibtex
 (use-package! org-roam-bibtex
  :after org-roam
- :hook
- (org-mode . org-roam-bibtex-mode)
  :custom
  (orb-note-actions-interface 'default)
  :config
@@ -318,14 +318,14 @@
 
 (use-package! citar-org-roam
   :after citar org-roam
-  :hook (org-roam-mode . citar-org-roam-mode)
   :config
+  (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template (cdr (assoc 'note citar-templates)))
 )
 
 (use-package! org-latex-preview
-  :hook (org-mode . org-latex-preview-auto-mode)
   :config
+  (org-latex-preview-auto-mode)
   ;; Increase preview width
   (plist-put org-latex-preview-appearance-options
              :page-width 0.8)
@@ -404,12 +404,12 @@
 
 (use-package! org-modern
   :after org
-  :hook (org-mode . org-modern-mode)
-        (org-agenda-finalize . org-modern-agenda)
 )
 
+(add-hook 'org-mode-hook #'org-modern-mode)
+(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+
 (use-package! org-appear
-  :hook (org-mode . org-appear-mode)
   :config
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
@@ -419,6 +419,9 @@
         org-appear-inside-latex t
         )
 )
+
+
+(add-hook 'org-mode-hook 'org-appear-mode)
 
 ;; config org download
 (use-package! org-download
@@ -540,7 +543,6 @@
   (add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
   (add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
   (advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
-  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable))
   :config
   (defun bmg/vulpea-project-p ()
     "Return non-nil if current buffer has any todo entry.
@@ -643,7 +645,7 @@ Refer to `org-agenda-prefix-format' for more information."
           (todo . " %i %(bmg/vulpea-agenda-category 12) ")
           (tags . " %i %(bmg/vulpea-agenda-category 12) ")
           (search . " %i %(bmg/vaulpea-agenda-category 12) ")))
-   (setq org-agenda-time-grid '((daily today require-timed)
+  (setq org-agenda-time-grid '((daily today require-timed)
                                (800 1200 1600 2000)
                                "......"
                                "----------------")
@@ -655,56 +657,58 @@ Refer to `org-agenda-prefix-format' for more information."
         org-agenda-compact-blocks t
         org-agenda-start-with-log-mode t
         org-agenda-start-day nil) ;; i.e. today
-)
+  )
 ;;(use-package! org-roam-review
 ;; :commands (org-roam-review
 ;;            org-roam-review-list-by-maturity
 ;;            org-roam-review-list-recently-added)
 
-  ;; ;; Optional - tag all newly-created notes as seedlings.
-  ;; :hook (org-roam-capture-new-node . org-roam-review-set-seedling)
+;; ;; Optional - tag all newly-created notes as seedlings.
+;; :hook (org-roam-capture-new-node . org-roam-review-set-seedling)
 
-  ;; ;; Optional - keybindings for applying Evergreen note properties.
-  ;; :general
-  ;; (:keymaps 'org-mode-map
-  ;; "C-c r r" '(org-roam-review-accept :wk "accept")
-  ;; "C-c r u" '(org-roam-review-bury :wk "bury")
-  ;; "C-c r x" '(org-roam-review-set-excluded :wk "set excluded")
-  ;; "C-c r b" '(org-roam-review-set-budding :wk "set budding")
-  ;; "C-c r s" '(org-roam-review-set-seedling :wk "set seedling")
-  ;; "C-c r e" '(org-roam-review-set-evergreen :wk "set evergreen"))
+;; ;; Optional - keybindings for applying Evergreen note properties.
+;; :general
+;; (:keymaps 'org-mode-map
+;; "C-c r r" '(org-roam-review-accept :wk "accept")
+;; "C-c r u" '(org-roam-review-bury :wk "bury")
+;; "C-c r x" '(org-roam-review-set-excluded :wk "set excluded")
+;; "C-c r b" '(org-roam-review-set-budding :wk "set budding")
+;; "C-c r s" '(org-roam-review-set-seedling :wk "set seedling")
+;; "C-c r e" '(org-roam-review-set-evergreen :wk "set evergreen"))
 
-  ;; ;; Optional - bindings for evil-mode compatability.
-  ;; :general
-  ;; (:states '(normal) :keymaps 'org-roam-review-mode-map
-  ;; "TAB" 'magit-section-cycle
-  ;; "g r" 'org-roam-review-refresh)
-  ;;)
-
+;; ;; Optional - bindings for evil-mode compatability.
+;; :general
+;; (:states '(normal) :keymaps 'org-roam-review-mode-map
+;; "TAB" 'magit-section-cycle
+;; "g r" 'org-roam-review-refresh)
+;;)
+(after! vulpea
+  (add-hook 'org-roam-db-autosync-mode-hook 'vulpea-db-autosync-enable)
+  )
 (use-package consult-org-roam
-   :after org-roam
-   :init
-   (consult-org-roam-mode 1)
-   :custom
-   ;; Use `ripgrep' for searching with `consult-org-roam-search'
-   (consult-org-roam-grep-func #'consult-ripgrep)
-   ;; Configure a custom narrow key for `consult-buffer'
-   (consult-org-roam-buffer-narrow-key ?r)
-   ;; Display org-roam buffers right after non-org-roam buffers
-   ;; in consult-buffer (and not down at the bottom)
-   (consult-org-roam-buffer-after-buffers t)
-   :config
-   ;; Eventually suppress previewing for certain functions
-   (consult-customize
-    consult-org-roam-forward-links
-    :preview-key (kbd "M-."))
-   ;;:bind
-   ;; Define some convenient keybindings as an addition
-   ;;("C-c n e" . consult-org-roam-file-find)
-   ;;("C-c n b" . consult-org-roam-backlinks)
-   ;;("C-c n l" . consult-org-roam-forward-links)
-   ;;("C-c n r" . consult-org-roam-search)
-   )
+  :after org-roam
+  :init
+  (consult-org-roam-mode 1)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  ;; Configure a custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-narrow-key ?r)
+  ;; Display org-roam buffers right after non-org-roam buffers
+  ;; in consult-buffer (and not down at the bottom)
+  (consult-org-roam-buffer-after-buffers t)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key (kbd "M-."))
+  ;;:bind
+  ;; Define some convenient keybindings as an addition
+  ;;("C-c n e" . consult-org-roam-file-find)
+  ;;("C-c n b" . consult-org-roam-backlinks)
+  ;;("C-c n l" . consult-org-roam-forward-links)
+  ;;("C-c n r" . consult-org-roam-search)
+  )
 
 
 
@@ -757,13 +761,11 @@ Refer to `org-agenda-prefix-format' for more information."
 ;;  (org-roam-slipbox-tag-mode +1))
 
 (use-package! sis
- :hook
- (meow-insert-exit-hook . sis-set-english)
- :config
- (sis-ism-lazyman-config
-         "com.apple.keylayout.UnicodeHexInput"
-         "org.fcitx.inputmethod.Fcitx5.fcitx5"
- )
+  :config
+  (sis-ism-lazyman-config
+  "com.apple.keylayout.UnicodeHexInput"
+  "org.fcitx.inputmethod.Fcitx5.fcitx5"
+  )
   ;; enable the /cursor color/ mode
   (sis-global-cursor-color-mode t)
   ;; enable the /respect/ mode
@@ -772,7 +774,10 @@ Refer to `org-agenda-prefix-format' for more information."
   (sis-global-context-mode t)
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t)
-)
+  )
+(after! sis
+  (add-hook 'meow-insert-exit-hook 'sis-set-english)
+  )
 
 ;; (use-package! rime
 ;;  :defer t
@@ -918,12 +923,12 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; )
 
 (use-package! ruff-format
- :hook (ruff-format-on-save-mode . python-mode)
 )
+(add-hook 'python-mode-hook 'ruff-format-on-save-mode)
 
 (use-package! pet
-  :hook (python-mode . pet-mode)
 )
+(add-hook 'python-mode-hook 'pet-mode)
 
 (setq font-latex-match-reference-keywords
        '(;; BibLaTeX.
@@ -994,6 +999,7 @@ Refer to `org-agenda-prefix-format' for more information."
   :hook
   (LaTeX-mode . outline-minor-mode)
 )
+#+end_#+begin_src
 
 (if IS-MAC
 (use-package! dash-at-point
@@ -1107,7 +1113,6 @@ Refer to `org-agenda-prefix-format' for more information."
   (magit-file-icons-enable-diffstat-icons t))
 
 (use-package! openwith
-  :hook (emacs-startup . openwith-mode)
   :init
   (setq +openwith-extensions '("pdf" "jpg" "png" "jpeg" "mp4"))
   :config
@@ -1121,6 +1126,7 @@ Refer to `org-agenda-prefix-format' for more information."
               (lambda (fn &rest args)
                 (let ((process-connection-type nil))
                   (apply fn args)))))
+(add-hook 'emacs-startup-hook 'openwith-mode)
 
 ;;(use-package! activity-watch-mode
 ;;:defer t
