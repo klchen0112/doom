@@ -38,10 +38,8 @@
 (setq
  mouse-drag-and-drop-region-cross-program t
  mouse-drag-and-drop-region t)
-;;(pixel-scroll-mode)
-;;(pixel-scroll-precision-mode 1)
-;;(setq pixel-scroll-precision-large-scroll-height 60
-;;     pixel-scroll-precision-interpolation-factor 30.0)
+(pixel-scroll-mode)
+(pixel-scroll-precision-mode 1)
 
 (setq
    org-roam-directory "~/org"
@@ -60,10 +58,10 @@
 (scroll-bar-mode 1)
 ;;(+global-word-wrap-mode +1)
 
-(use-package! benchmark-init
+;; (use-package! benchmark-init
   ;;:config
   ;;(add-hook! 'after-init-hook 'benchmark-init/deactivate)
-)
+;; )
 
 ;; Framing Size
 ;; start the initial frame maximized
