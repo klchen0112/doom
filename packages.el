@@ -45,7 +45,7 @@
               "(provide 'org-version)\n"))))
   :pin nil)
 
-;;(unpin! org)
+(unpin! org)
 
 (package! org-modern)
 (package! org-appear)
