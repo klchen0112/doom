@@ -774,7 +774,7 @@ citar need vertico
               "(provide 'org-version)\n"))))
   :pin nil)
 
-(unpin! org)
+;; (unpin! org)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
