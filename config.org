@@ -549,7 +549,7 @@
     :config
     (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
   )
-  (add-hook 'after-init-hook 'emt-mode)
+  (add-hook 'after-init-hook #'emt-mode)
 )
 #+end_src
 ** save
@@ -837,12 +837,16 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 
 (use-package! org-modern
-  :hook ((org-mode . org-modern-mode))
   :after org
-)
+  :init
+  (add-hook 'org-mode-hook #'org-modern-mode)
+  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+  )
 
 (use-package! org-appear
-  :hook ((org-mode . org-appear-mode))
+  :after org
+  :init
+  (add-hook 'org-mode-hook #'org-appear-mode)
   :config
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
@@ -851,7 +855,8 @@ citar need vertico
         org-appear-autokeywords t
         org-appear-inside-latex t
         )
-)
+  )
+
 #+end_src
 
 ** org-download
@@ -1033,13 +1038,13 @@ citar need vertico
 
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
-  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable))
   :after (org-agenda org-roam)
   :commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
   :init
   (add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
   (add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
   (advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
+  (add-hook 'org-roam-db-autosync-mode-hook  #'vulpea-db-autosync-enable)
   :config
   (defun bmg/vulpea-project-p ()
     "Return non-nil if current buffer has any todo entry.
@@ -1083,7 +1088,7 @@ tasks."
           (file-name-directory buffer-file-name))))
 
   (defun bmg/vulpea-project-files ()
-    "Return a list of note files containing 'project' tag." ;
+    "Return a list of note files containing \='project\=' tag." ;
     (seq-uniq
      (seq-map
       #'car
@@ -1115,9 +1120,9 @@ longer than LEN.
 Usage example:
 
   (setq org-agenda-prefix-format
-        '((agenda . \" %(vulpea-agenda-category) %?-12t %12s\")))
+        \='((agenda . \" %(vulpea-agenda-category) %?-12t %12s\")))
 
-Refer to `org-agenda-prefix-format' for more information."
+Refer to \=`org-agenda-prefix-format\=' for more information."
     (let* ((file-name (when buffer-file-name
                         (file-name-sans-extension
                          (file-name-nondirectory buffer-file-name))))
@@ -1155,6 +1160,9 @@ Refer to `org-agenda-prefix-format' for more information."
         org-agenda-start-with-log-mode t
         org-agenda-start-day nil) ;; i.e. today
   )
+
+
+
 ;;(use-package! org-roam-review
 ;; :commands (org-roam-review
 ;;            org-roam-review-list-by-maturity
@@ -1264,6 +1272,8 @@ Refer to `org-agenda-prefix-format' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! sis
+  :init
+  (add-hook 'meow-insert-exit-hook #'sis-set-english)
   :config
   (sis-ism-lazyman-config
   "com.apple.keylayout.UnicodeHexInput"
@@ -1277,7 +1287,6 @@ Refer to `org-agenda-prefix-format' for more information."
   (sis-global-context-mode t)
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t)
-  (add-hook 'meow-insert-exit-hook 'sis-set-english)
   )
 #+end_src
 ** Rime
@@ -1486,7 +1495,8 @@ Refer to `org-agenda-prefix-format' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! ruff-format
- :hook ((python-mode . ruff-format-on-save-mode))
+ :init
+ (add-hook 'python-mode-hook #'ruff-format-on-save-mode)
 )
 #+end_src
 *** virtual enviroment
@@ -1496,7 +1506,8 @@ Refer to `org-agenda-prefix-format' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
-  :hook ((python-mode . pet-mode))
+  :init
+  (add-hook 'python-mode-hook #'pet-mode)
 )
 #+end_src
 ** Latex mode
@@ -1572,8 +1583,8 @@ Refer to `org-agenda-prefix-format' for more information."
 #+begin_src emacs-lisp :tangle config.el
 ;; 为 latex 提供折叠大纲功能
 (use-package! outline
-  :hook
-  ((LaTeX-mode . outline-minor-mode))
+  :init
+  (add-hook 'LaTeX-mode-hook  #'outline-minor-mode)
 )
 #+end_src
 ** Doc
@@ -1687,11 +1698,11 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-ai
-  ;;:commands (org-ai-mode org-ai-global-mode)
-  :hook ((org-mode . org-ai-mode))
+  :commands (org-ai-mode org-ai-global-mode)
   :after org
-  ;; :init
-  ;; (org-ai-global-mode)
+  :init
+  (add-hook 'org-mode-hook #'org-ai-mode)
+  (org-ai-global-mode)
   :config
   ;;(setq org-ai-default-chat-model "gpt-4") ; if you are on the gpt-4 beta:
   (org-ai-install-yasnippets)
@@ -1746,8 +1757,8 @@ use dash open app dash
 (use-package! openwith
   :init
   (setq +openwith-extensions '("pdf" "jpg" "png" "jpeg" "mp4"))
+  (add-hook 'emacs-startup-hook #'openwith-mode)
   :config
-  (add-hook 'emacs-startup-hook 'openwith-mode)
   (when-let (cmd (cond ((featurep :system 'macos) "open")
                        ((featurep :system 'linux) "xdg-open")
                        ((featurep :system 'windows) "start")))
