@@ -268,17 +268,16 @@
 * packages
 
 #+begin_src emacs-lisp :tangle packages.el
-;;; $DOOMDIR/packages.el -*- lexical-binding: t; -*-
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
+
 #+end_src
 * Basic setting
 ** Simple Settings
 
 #+begin_src emacs-lisp :tangle config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
+
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
