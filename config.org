@@ -2,9 +2,6 @@
 #+AUTHOR: klchen0112
 #+EMAIL: klchen0112@gmail.com
 #+startup: fold
-#+property: header-args :emacs-lisp :tangle yes :comments link
-#+property: header-args :elisp :exports code
-#+property: header-args :tangle no :results silent :eval no-export
 * Init.el
 #+begin_src emacs-lisp :tangle init.el
 ;;; init.el -*- lexical-binding: t; -*-
@@ -269,20 +266,16 @@
        (default +bindings +smartparens))
 #+end_src
 * packages
-:PROPERTIES:
-:ID:       e970a14b-3bdc-45bf-af5c-f85727067773
-:END:
-#+begin_src emacs-lisp conf :tangle packages.el
+
+#+begin_src emacs-lisp :tangle packages.el
 ;;; $DOOMDIR/packages.el -*- lexical-binding: t; -*-
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 #+end_src
 * Basic setting
 ** Simple Settings
-:PROPERTIES:
-:ID:       0f38d9a6-c7d4-4370-bd44-839d77bc33a4
-:END:
-#+begin_src emacs-lisp conf :tangle config.el
+
+#+begin_src emacs-lisp :tangle config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
@@ -344,16 +337,13 @@
 (setq native-comp-async-jobs-number 16)
 #+end_src
 ** Global mode
-:PROPERTIES:
-:ID:       f610bfb5-ce6d-44fa-ae62-bcbf155ced56
-:END:
 #+begin_src emacs-lisp :tangle packages.el
 
 
 #+end_src
 
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 ;; (display-time-mode 1)                             ; Enable time in the mode-line
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
@@ -366,9 +356,6 @@
 
 #+end_src
 * start benchmark
-:PROPERTIES:
-:ID:       12e0119d-2f0b-4684-87c3-c596ade4d065
-:END:
 
 #+begin_src emacs-lisp :tangle packages.el
 ;; (package! benchmark-init)
@@ -383,14 +370,12 @@
 
 * UI settings
 ** frame
-:PROPERTIES:
-:ID:       81059094-5346-4f65-b701-5abfbf89598f
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 
 #+end_src
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 ;; Framing Size
 ;; start the initial frame maximized
 ;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
@@ -405,10 +390,8 @@
 #+end_src
 ** font
 *** font config
-:PROPERTIES:
-:ID:       06e0dce5-4f1f-4dc4-a8ea-920955909ac4
-:END:
-#+begin_src emacs-lisp conf :tangle config.el
+
+#+begin_src emacs-lisp :tangle config.el
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
 ;; - `doom-font' -- the primary font to use
@@ -472,9 +455,7 @@
 
 #+end_src
 ** theme
-:PROPERTIES:
-:ID:       918efa68-0a34-4e90-ba5f-305b628bbb7b
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 #+end_src
 
@@ -534,17 +515,13 @@
 
 #+end_src
 ** dashboard
-:PROPERTIES:
-:ID:       24df29ee-b60d-4408-ac20-1c7c95da1918
-:END:
+
 #+begin_src emacs-lisp :tangle config.el
 ;; this code from https://randomgeekery.org/config/emacs/doom/
 
 #+end_src
 ** global mode
-:PROPERTIES:
-:ID:       cd7500b9-220e-4c2d-9946-5f86248c1a7e
-:END:
+
 #+begin_src emacs-lisp :tangle config.el
 (setq menu-bar-mode t)
 #+end_src
@@ -576,9 +553,7 @@
 )
 #+end_src
 ** save
-:PROPERTIES:
-:ID:       0e0c8caf-e9a6-43b4-b393-e502b9ef7511
-:END:
+
 #+begin_src emacs-lisp :tangle config.el
 (setq auto-save-default t)
 #+end_src
@@ -629,9 +604,7 @@
 #+end_src
 * Biblio
 ** init biblio
-:PROPERTIES:
-:ID:       6d187859-ed0e-4994-8651-0744708518c5
-:END:
+
 #+begin_src emacs-lisp :tangle config.el
 (setq my/bib (concat "~/org/" "academic.bib"))
 (setq my/notes (concat "~/org/" "references"))
@@ -639,9 +612,7 @@
 #+end_src
 
 ** citar
-:PROPERTIES:
-:ID:       108a861b-bfd8-4e47-b634-4ead3d291b4e
-:END:
+
 citar need vertico
 
 #+begin_src emacs-lisp :tangle config.el
@@ -687,16 +658,14 @@ citar need vertico
   )
 #+end_src
 ** org roam bibtex
-:PROPERTIES:
-:ID:       e6370510-1fce-426e-a6de-2930e7ed855f
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;; interact with org-roam and bibtex
 (package! org-roam-bibtex)
 #+end_src
 
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 ;; Org-Roam-Bibtex
 (use-package! org-roam-bibtex
  :after org-roam
@@ -801,9 +770,7 @@ citar need vertico
   (setq org-latex-preview-live-debounce 0.25))
 #+end_src
 ** 设置 org 常用设置
-:PROPERTIES:
-:ID:       3fcd76df-a2bc-4291-9012-9ed3d1acc490
-:END:
+
 #+begin_src emacs-lisp :tangle config.el
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -859,17 +826,15 @@ citar need vertico
 #+end_src
 
 ** org 美化
-:PROPERTIES:
-:ID:       85728e6b-30dd-4781-b1f2-a0e7462f6f45
-:END:
-#+begin_src emacs-lisp conf :tangle packages.el
+
+#+begin_src emacs-lisp :tangle packages.el
 (package! org-modern)
 (package! org-appear)
 
 #+end_src
 
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 
 (use-package! org-modern
   :hook ((org-mode . org-modern-mode))
@@ -890,7 +855,7 @@ citar need vertico
 #+end_src
 
 ** org-download
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 ;; config org download
 (use-package! org-download
   :after org
@@ -901,11 +866,9 @@ citar need vertico
 )
 #+end_src
 ** org-agenda
-:PROPERTIES:
-:ID:       ee84bfc0-3e42-4a8d-a9c2-2d8c3093d06d
-:END:
 
-#+begin_src emacs-lisp conf :tangle config.el
+
+#+begin_src emacs-lisp :tangle config.el
 (use-package! org-agenda
   :after org
   :config
@@ -928,9 +891,7 @@ citar need vertico
 )
 #+end_src
 ** org hugo
-:PROPERTIES:
-:ID:       a7fb163c-1d82-4670-ac10-a6180cac2cfb
-:END:
+
 #+begin_src elisp :tangle config.el
 (use-package! ox-hugo
   :after org-capture ox
@@ -940,17 +901,13 @@ citar need vertico
 #+end_src
 
 * org-roam
-:PROPERTIES:
-:ID:       466ca3d1-ca43-4265-9493-1177afe300ce
-:END:
-** org-roam settings
-:PROPERTIES:
-:ID: 3f6a8789-2cb1-45ec-ab57-063d22cceaf8
-:END:
-#+begin_src elisp :tangle packages.el
-;;(unpin! org-roam)
 
-;;(unpin! org-roam-ui)
+** org-roam settings
+
+#+begin_src elisp :tangle packages.el
+(unpin! org-roam)
+
+(unpin! org-roam-ui)
 
 (package! consult-org-roam)
 
@@ -961,7 +918,7 @@ citar need vertico
    - 实现效果不太好
 
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 
 
 (use-package! org-roam
@@ -1024,11 +981,9 @@ citar need vertico
 #+end_src
 
 ** org roam timestamps
-:PROPERTIES:
-:ID:       09752942-9f28-4b04-b64e-867b2186dae1
-:END:
+
 自动记录包含 org-id 的节点的修改时间
-#+begin_src emacs-lisp conf :tangle packages.el
+#+begin_src emacs-lisp :tangle packages.el
 (package! org-roam-timestamps)
 #+end_src
 
@@ -1042,9 +997,7 @@ citar need vertico
 
 #+end_src
 ** org transculsion
-:PROPERTIES:
-:ID:       5586b987-8479-49cf-be97-721142a74ac4
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! org-transclusion)
 #+end_src
@@ -1062,12 +1015,10 @@ citar need vertico
    :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
 #+end_src
 ** org-roam-enhance
-:PROPERTIES:
-:ID:       773deaf6-f5cb-4d40-89de-b38bb67f47dd
-:END:
+
 1. use vulpea for auto add tag roam-agenda and add TODO file to org-todo
 2. use org-transclusion for insert block for org
-#+begin_src emacs-lisp conf :tangle packages.el
+#+begin_src emacs-lisp :tangle packages.el
 (package! vulpea)
 (package! consult-org-roam)
 (package! org-super-agenda)
@@ -1078,7 +1029,7 @@ citar need vertico
 #+end_src
 
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
@@ -1306,9 +1257,7 @@ Refer to `org-agenda-prefix-format' for more information."
 #+end_src
 * Input Method
 ** smart input source
-:PROPERTIES:
-:ID:       8d800b39-c8e6-4423-9cc8-cae91df94f67
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! sis)
 #+end_src
@@ -1335,18 +1284,14 @@ Refer to `org-agenda-prefix-format' for more information."
 1. 使用rime作为输入法
 2. 加入了中英文自动检测
 *** Package
-:PROPERTIES:
-:ID:       e3d48ce3-a022-4f8e-8455-0f2c7856d579
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;; (package! rime :built-in t)
 ;; (package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
 #+end_src
 *** rime init
-:PROPERTIES:
-:ID:       8b4d6475-ea71-47c9-8aef-ea466ea13b24
-:END:
-#+begin_src emacs-lisp conf :tangle config.el
+
+#+begin_src emacs-lisp :tangle config.el
 
 ;; (use-package! rime
 ;;  :defer t
@@ -1370,9 +1315,7 @@ Refer to `org-agenda-prefix-format' for more information."
 #+end_src
 * completion
 ** tempel
-:PROPERTIES:
-:ID:       53618ac2-2311-45bb-b4f3-40ffa5559db3
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;;(package! tempel)
 ;;(package! tempel-collection)
@@ -1419,9 +1362,7 @@ Refer to `org-agenda-prefix-format' for more information."
 
 #+end_src
 ** codeium/copilot
-:PROPERTIES:
-:ID:       a6b9d1b6-a420-4626-886b-059a727f0e0e
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;;(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
 ;; (package! copilot
@@ -1521,9 +1462,6 @@ Refer to `org-agenda-prefix-format' for more information."
 ;;(setq ts-docstr-ask-on-enable t))
 #+end_src
 ** LSP mode
-:PROPERTIES:
-:ID:       413e9af2-7f0f-47c7-9d3f-a27c919f3bfd
-:END:
 #+begin_src emacs-lisp :tangle config.el
 (after! lsp-mode
   (setq lsp-ui-doc-show-with-cursor t)
@@ -1531,14 +1469,12 @@ Refer to `org-agenda-prefix-format' for more information."
 #+end_src
 ** python
 *** conda and micromamba opt
-:PROPERTIES:
-:ID:       d4be558f-c96d-4107-a442-14fe7648ce6b
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;; (if IS-MAC (package! micromamba))
 #+end_src
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 ;; (if IS-MAC
   ;; (use-package! micromamba)
 ;; )
@@ -1641,15 +1577,13 @@ Refer to `org-agenda-prefix-format' for more information."
 )
 #+end_src
 ** Doc
-:PROPERTIES:
-:ID:       e9453c1b-4a72-4978-8a8c-a3345b999566
-:END:
+
 use dash open app dash
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC (package! dash-at-point))
 #+end_src
 
-#+begin_src emacs-lisp conf :tangle config.el
+#+begin_src emacs-lisp :tangle config.el
 (if IS-MAC
 (use-package! dash-at-point
   :config
@@ -1675,9 +1609,7 @@ use dash open app dash
 
 * reader
 ** org noter and nov
-:PROPERTIES:
-:ID:       e8eadfe1-c054-4638-9a34-1da12bbe3ae3
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;;(package! org-noter :recipe (:host github :repo "org-noter/org-noter"))
 
@@ -1696,9 +1628,7 @@ use dash open app dash
 )
 #+end_src
 ** org media note
-:PROPERTIES:
-:ID:       db750490-5187-4e2f-bb38-b1ac885298b7
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 ;;(package! pretty-hydra)  ;; dependency
 ;;(package! org-media-note :recipe (:host github :repo "yuchen-lea/org-media-note"))
@@ -1717,9 +1647,7 @@ use dash open app dash
 ;;  )
 #+end_src
 ** mpvi
-:PROPERTIES:
-:ID:       36d364ad-6e8d-4596-8fca-e4899d1311f3
-:END:
+
 
 #+begin_src emacs-lisp :tangle packages.el
 ;;(package! mpvi :recipe (:host github :repo "lorniu/mpvi"))
@@ -1729,9 +1657,7 @@ use dash open app dash
 ;;(use-package! mpvi)
 #+end_src
 ** anki
-:PROPERTIES:
-:ID:       abe7ac7e-f756-454e-bfe5-68b42efe8045
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! org-anki :recipe (:host github :repo "eyeinsky/org-anki"))
 #+end_src
@@ -1740,9 +1666,7 @@ use dash open app dash
 (use-package! org-anki)
 #+end_src
 * APP
-:PROPERTIES:
-:ID:       c5312a82-9f24-4e4b-9f81-0660dbc3d380
-:END:
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! telega :built-in t)
 #+end_src
