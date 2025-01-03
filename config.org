@@ -652,9 +652,8 @@ citar need vertico
                 ))))
 
 (use-package! citar-embark
-  :after citar embark
   :config (citar-embark-mode)
-  )
+)
 #+end_src
 ** org roam bibtex
 
@@ -667,7 +666,6 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;; Org-Roam-Bibtex
 (use-package! org-roam-bibtex
- :after org-roam
  :custom
  (orb-note-actions-interface 'default)
  :config
@@ -702,7 +700,7 @@ citar need vertico
 
 
 (use-package! citar-org-roam
-  :after citar org-roam
+
   :config
   (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template (cdr (assoc 'note citar-templates)))
@@ -836,14 +834,14 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 
 (use-package! org-modern
-  :after org
+
   :init
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
   )
 
 (use-package! org-appear
-  :after org
+
   :init
   (add-hook 'org-mode-hook #'org-appear-mode)
   :config
@@ -862,7 +860,7 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;; config org download
 (use-package! org-download
-  :after org
+
   :config
   (setq org-download-method 'directory)
   (setq org-download-image-dir "~/Library/Mobile Documents/com~apple~CloudDocs/Documents/org-attach")
@@ -874,7 +872,7 @@ citar need vertico
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-agenda
-  :after org
+
   :config
   (setq org-agenda-files '("~/org/pages/TODO.org"))
   ;; 时间前导0
@@ -898,7 +896,7 @@ citar need vertico
 
 #+begin_src elisp :tangle config.el
 (use-package! ox-hugo
-  :after org-capture ox
+
   :config
   (setq org-hugo-default-static-subdirectory-for-externals "img")
 )
@@ -926,7 +924,7 @@ citar need vertico
 
 
 (use-package! org-roam
-  :after org
+
   :commands (org-roam-buffer
              org-roam-setup
              org-roam-capture
@@ -972,7 +970,7 @@ citar need vertico
 
 
 (use-package! org-roam-ui
-  :after org-roam ;; or :after org
+
   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
   ;;         a hookable mode anymore, you're advised to pick something yourself
   ;;         if you don't care about startup time, use
@@ -994,7 +992,7 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;;自动创建笔记的创建时间和修改时间
 (use-package! org-roam-timestamps
-  :after org-roam
+
   :config
   (org-roam-timestamps-mode)
   (setq org-roam-timestamps-parent-file t))
@@ -1009,7 +1007,7 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;;跨文件的引用，能够实现笔记的一处修改，处处修改。
 (use-package! org-transclusion
-  :after org
+
   :commands org-transclusion-mode
   :init
   (map!
@@ -1037,13 +1035,12 @@ citar need vertico
 
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
-  :after (org-agenda org-roam)
+  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
   :commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
   :init
   (add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
   (add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
   (advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
-  (add-hook 'org-roam-db-autosync-mode-hook  #'vulpea-db-autosync-enable)
   :config
   (defun bmg/vulpea-project-p ()
     "Return non-nil if current buffer has any todo entry.
@@ -1139,7 +1136,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
         result))))
 
 (use-package! org-super-agenda
-  :after org-agenda
   :init
   (setq org-agenda-prefix-format
         '((agenda . " %i %(bmg/vulpea-agenda-category 12)%?-12t% s")
@@ -1187,7 +1183,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;; "g r" 'org-roam-review-refresh)
 ;;)
 (use-package! consult-org-roam
-  :after org-roam
   :init
   (consult-org-roam-mode 1)
   :custom
@@ -1209,7 +1204,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   ;;("C-c n b" . consult-org-roam-backlinks)
   ;;("C-c n l" . consult-org-roam-forward-links)
   ;;("C-c n r" . consult-org-roam-search)
-  )
+)
 
 
 
@@ -1629,7 +1624,6 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-noter
-  :after org
   :config
   (setq org-noter-notes-search-path (concat org-directory "references"))
   (setq org-noter-alway-create-frame t)
@@ -1698,7 +1692,6 @@ use dash open app dash
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-ai
   :commands (org-ai-mode org-ai-global-mode)
-  :after org
   :init
   (add-hook 'org-mode-hook #'org-ai-mode)
   (org-ai-global-mode)
@@ -1736,7 +1729,6 @@ use dash open app dash
 (use-package! git-link)
 
 (use-package! magit-file-icons
-  :after magit
   :init
   (magit-file-icons-mode 1)
   :custom
