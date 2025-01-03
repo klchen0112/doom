@@ -586,7 +586,7 @@
 ;; (package! pangu-spacing)
 #+end_src
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 ;; (use-package! pangu-spacing
  ;; :config
  ;; (setq pangu-spacing-real-insert-separtor t)
