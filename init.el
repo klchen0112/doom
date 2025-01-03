@@ -216,7 +216,7 @@
        ;;purescript        ; javascript, but functional
        (python +lsp
                +pyright
-               +pyenv
+               ;; +pyenv
                +cpython
                ;; (if (not IS-MAC) +conda)
                ;;+poetry

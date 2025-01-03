@@ -1,6 +1,3 @@
-:PROPERTIES:
-:ID:       1bf5e137-a333-43da-827f-c09885a402b8
-:END:
 #+TITLE: config
 #+AUTHOR: klchen0112
 #+EMAIL: klchen0112@gmail.com
@@ -9,9 +6,6 @@
 #+property: header-args :elisp :exports code
 #+property: header-args :tangle no :results silent :eval no-export
 * Init.el
-:PROPERTIES:
-:ID: d8d43fa6-0b7e-47c7-9c65-919b510c8202
-:END:
 #+begin_src emacs-lisp :tangle init.el
 ;;; init.el -*- lexical-binding: t; -*-
                                         ;   ;
@@ -231,7 +225,7 @@
        ;;purescript        ; javascript, but functional
        (python +lsp
                +pyright
-               +pyenv
+               ;; +pyenv
                +cpython
                ;; (if (not IS-MAC) +conda)
                ;;+poetry
