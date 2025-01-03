@@ -1631,7 +1631,7 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! pretty-hydra)  ;; dependency
-(package! org-media-note :recipe (:host github :repo "yuchen-lea/org-media-note"))
+(package! org-media-note :recipe (:host github :repo "yuchen-lea/org-media-note") :pin "4b9f3ef40b3f55b342f2d81abd12ea2f5ce37646")
 #+end_src
 
 
@@ -1650,20 +1650,20 @@ use dash open app dash
 
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! mpvi :recipe (:host github :repo "lorniu/mpvi"))
+;; (package! mpvi :recipe (:host github :repo "lorniu/mpvi"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! mpvi)
+;; (use-package! mpvi)
 #+end_src
 ** anki
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! org-anki :recipe (:host github :repo "eyeinsky/org-anki"))
+;; (package! org-anki :recipe (:host github :repo "eyeinsky/org-anki"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! org-anki)
+;; (use-package! org-anki)
 #+end_src
 * APP
 
