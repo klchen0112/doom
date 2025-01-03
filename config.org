@@ -1133,7 +1133,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 (add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
 (add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
 (advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
-_
 
 (use-package! org-super-agenda
   :init
