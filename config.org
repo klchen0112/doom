@@ -148,7 +148,7 @@
        ;;beancount         ; mind the GAAP
        (cc +lsp
            ;; C > C++ == 1
-           +tree-sitter
+           ;;+tree-sitter
         )
        ;;(clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -161,7 +161,7 @@
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        (emacs-lisp; drown in parentheses
-        +tree-sitter
+        ;;+tree-sitter
         )
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
@@ -244,7 +244,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +lsp)              ; the tubes
        (yaml +lsp
-             +tree-sitter
+             ;;+tree-sitter
        )              ; JSON, but readable
        ;;zig               ; C, but simpler
 
@@ -595,19 +595,19 @@
 #+end_src
 ** Tree siter
 #+begin_src emacs-lisp tangle: packages.el
-;; (package! treesit-auto)
-;; (package! treesit-fold :recipe (:host github :repo "emacs-tree-sitter/treesit-fold" :pin "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"))
+(package! treesit-auto)
+(package! treesit-fold :recipe (:host github :repo "emacs-tree-sitter/treesit-fold" :pin "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-;; (use-package! treesit-auto
-;;     :custom
-;;   (treesit-auto-install 'prompt)
-;;   :config
-;;   (treesit-auto-add-to-auto-mode-alist 'all)
-;;   (global-treesit-auto-mode)
-;; )
-;; (use-package! treesit-fold)
+(use-package! treesit-auto
+    :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode)
+)
+(use-package! treesit-fold)
 #+end_src
 * Biblio
 ** init biblio
