@@ -359,14 +359,14 @@
 * start benchmark
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! benchmark-init)
+;; (package! benchmark-init)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! benchmark-init
-  :hook
-  (after-init-hook . #'benchmark-init/deactivate)
-)
+;; (use-package! benchmark-init
+  ;; :hook
+  ;; (after-init-hook . #'benchmark-init/deactivate)
+;; )
 #+end_src
 
 * UI settings
