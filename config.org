@@ -595,7 +595,7 @@
 #+end_src
 ** Tree siter
 #+begin_src emacs-lisp tangle: packages.el
-(package! treesit-auto)
+(package! treesit-auto :recipe (:host github :repo "renzmann/treesit-auto" :files ("*.el" "dist")) :pin "016bd286a1ba4628f833a626f8b9d497882ecdf3")
 (package! treesit-fold :recipe (:host github :repo "emacs-tree-sitter/treesit-fold" :pin "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"))
 #+end_src
 
@@ -1512,8 +1512,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
-  :init
-  (add-hook 'python-mode-hook #'pet-mode)
+  :hook
+  (python-base-mode . #'pet-mode)
 )
 #+end_src
 ** Latex mode
