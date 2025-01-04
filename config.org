@@ -1041,6 +1041,15 @@ citar need vertico
 
 
 #+begin_src emacs-lisp :tangle config.el
+;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
+(use-package! vulpea
+  :hook (org-roam-db-autosync-mode . vulpea-db-autosync-enable)
+:commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
+:init
+(add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
+(add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
+(advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
+:config
 (defun bmg/vulpea-project-p ()
   "Return non-nil if current buffer has any todo entry.
 TODO entries marked as done are ignored, meaning the this
@@ -1133,15 +1142,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
     (if (numberp len)
         (s-truncate len (s-pad-right len " " result))
       result)))
-;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
-(use-package! vulpea
-  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
-:commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
-:init
-(add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
-(add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
-(advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
-
+)
 (use-package! org-super-agenda
   :init
   (setq org-agenda-prefix-format
@@ -1264,6 +1265,10 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;;  (org-roam-slipbox-tag-mode +1))
 
 #+end_src
+
+#+RESULTS:
+: t
+
 * Input Method
 ** smart input source
 
