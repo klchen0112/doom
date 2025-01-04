@@ -324,10 +324,10 @@
    org-roam-directory "~/org"
    org-roam-file-extensions '("org"))
 #+end_src
+
 ** exec path
 #+begin_src emacs-lisp :tangle config.el
 (setq shell-file-name (executable-find "bash"))
-(setq-default vterm-shell (executable-find "fish"))
 
 (setq-default explicit-shell-file-name (executable-find "fish"))
 #+end_src
