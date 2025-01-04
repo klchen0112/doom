@@ -265,23 +265,23 @@
        ;;literate
        (default +bindings +smartparens))
 #+end_src
-* packages
+* packages.el
 
 #+begin_src emacs-lisp :tangle packages.el
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
-
 #+end_src
-* Basic setting
-** Simple Settings
-
+* config.el
 #+begin_src emacs-lisp :tangle config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+#+end_src
+* Basic setting
+** Simple Settings
 
-
+#+begin_src emacs-lisp :tangle config.el
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snipets. It is optional.
 (setq user-full-name "klchen0112"
@@ -320,26 +320,27 @@
 (pixel-scroll-mode)
 (pixel-scroll-precision-mode 1)
 
-(setq
+(setq org-directory "~/org"
    org-roam-directory "~/org"
    org-roam-file-extensions '("org"))
 #+end_src
 
 ** exec path
+#+begin_src emacs-lisp :tangle packages.el
+(package! exec-path-from-shell)
+#+end_src
+
 #+begin_src emacs-lisp :tangle config.el
+(use-package! exec-path-from-shell
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-initialize)
+)
 (setq shell-file-name (executable-find "bash"))
 
 (setq-default explicit-shell-file-name (executable-find "fish"))
 #+end_src
-** workaround
-#+begin_src emacs-lisp config.el
-(setq native-comp-async-jobs-number 16)
-#+end_src
+
 ** Global mode
-#+begin_src emacs-lisp :tangle packages.el
-
-
-#+end_src
 
 
 #+begin_src emacs-lisp :tangle config.el
@@ -357,14 +358,14 @@
 * start benchmark
 
 #+begin_src emacs-lisp :tangle packages.el
-;; (package! benchmark-init)
+(package! benchmark-init)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-;; (use-package! benchmark-init
-  ;;:config
-  ;;(add-hook! 'after-init-hook 'benchmark-init/deactivate)
-;; )
+(use-package! benchmark-init
+  :hook
+  (after-init-hook . #'benchmark-init/deactivate)
+)
 #+end_src
 
 * UI settings
@@ -593,13 +594,19 @@
 #+end_src
 ** Tree siter
 #+begin_src emacs-lisp tangle: packages.el
-(package! treesit-auto)
-(package! treesit-fold :recipe (:host github :repo "emacs-tree-sitter/treesit-fold" :pin "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"))
+;; (package! treesit-auto)
+;; (package! treesit-fold :recipe (:host github :repo "emacs-tree-sitter/treesit-fold" :pin "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! treesit-auto)
-(use-package! treesit-fold)
+;; (use-package! treesit-auto
+;;     :custom
+;;   (treesit-auto-install 'prompt)
+;;   :config
+;;   (treesit-auto-add-to-auto-mode-alist 'all)
+;;   (global-treesit-auto-mode)
+;; )
+;; (use-package! treesit-fold)
 #+end_src
 * Biblio
 ** init biblio
@@ -1773,16 +1780,4 @@ use dash open app dash
 ;;:init
 ;;(global-activity-watch-mode)
 ;;)
-#+end_src
-
-** Exec Path
-#+begin_src emacs-lisp :tangle packages.el
-(package! exec-path-from-shell)
-#+end_src
-
-#+begin_src emacs-lisp :tangle config.el
-(use-package! exec-path-from-shell
-  (setq exec-path-from-shell-check-startup-files nil)
-  (exec-path-from-shell-initialize)
-)
 #+end_src
