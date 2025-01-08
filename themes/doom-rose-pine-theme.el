@@ -138,104 +138,104 @@
                  (modeline-bg-inactive-alt    base)
                  (modeline-fg-inactive-alt    subtle)
                  (modeline-pad
-                  (if (integerp doom-rose-pine-padded-modeline) doom-rose-pine-padded-modeline 4))
+                  (if (integerp doom-rose-pine-padded-modeline) doom-rose-pine-padded-modeline 4)))
 
-                 ;; Base theme face overrides
-                 (
-                  ;; Font
-                  ((font-lock-comment-face &override)
-                   :slant 'italic
-                   :background (if doom-rose-pine-brighter-comments (doom-blend teal base 0.07)))
-                  ((font-lock-type-face &override) :slant 'italic)
-                  ((font-lock-builtin-face &override) :slant 'italic)
-                  ((font-lock-function-name-face &override) :foreground type)
-                  ((font-lock-keyword-face &override) :weight 'bold)
-                  ((font-lock-constant-face &override) :weight 'bold)
+                ;; Base theme face overrides
+                (
+                 ;; Font
+                 ((font-lock-comment-face &override)
+                  :slant 'italic
+                  :background (if doom-rose-pine-brighter-comments (doom-blend teal base 0.07)))
+                 ((font-lock-type-face &override) :slant 'italic)
+                 ((font-lock-builtin-face &override) :slant 'italic)
+                 ((font-lock-function-name-face &override) :foreground type)
+                 ((font-lock-keyword-face &override) :weight 'bold)
+                 ((font-lock-constant-face &override) :weight 'bold)
 
-                  ;; Highlight line
-                  (hl-line
-                   :background surface)
+                 ;; Highlight line
+                 (hl-line
+                  :background surface)
 
-                  ;; Line numbers
-                  ((line-number &override) :foreground muted)
-                  ((line-number-current-line &override) :foreground text)
+                 ;; Line numbers
+                 ((line-number &override) :foreground muted)
+                 ((line-number-current-line &override) :foreground text)
 
-                  ;; Mode line
-                  (mode-line
-                   :background modeline-bg
-                   :foreground modeline-fg
-                   :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg)))
-                  (mode-line-inactive
-                   :background modeline-bg-inactive
-                   :foreground modeline-fg-inactive
-                   :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-inactive)))
-                  (mode-line-emphasis
-                   :foreground (if doom-rose-pine-brighter-modeline text subtle))
+                 ;; Mode line
+                 (mode-line
+                  :background modeline-bg
+                  :foreground modeline-fg
+                  :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg)))
+                 (mode-line-inactive
+                  :background modeline-bg-inactive
+                  :foreground modeline-fg-inactive
+                  :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-inactive)))
+                 (mode-line-emphasis
+                  :foreground (if doom-rose-pine-brighter-modeline text subtle))
 
-                  ;; Company
-                  (company-tooltip-selection :background blue :foreground muted)
+                 ;; Company
+                 (company-tooltip-selection :background blue :foreground muted)
 
-                  ;; CSS mode <built-in> / scss-mode
-                  (css-proprietary-property :foreground orange)
-                  (css-property             :foreground green)
-                  (css-selector             :foreground green)
+                 ;; CSS mode <built-in> / scss-mode
+                 (css-proprietary-property :foreground orange)
+                 (css-property             :foreground green)
+                 (css-selector             :foreground green)
 
-                  ;; Doom mode line
-                  (doom-modeline-bar :background green) ; The line to the left
-                  (doom-modeline-evil-emacs-state  :foreground magenta)  ; The dot color when in emacs mode
-                  (doom-modeline-evil-normal-state :foreground green)    ; The dot color when in normal mode
-                  (doom-modeline-evil-visual-state :foreground magenta)  ; The dot color when in visual mode
-                  (doom-modeline-evil-insert-state :foreground orange)   ; The dot color when in insert mode
+                 ;; Doom mode line
+                 (doom-modeline-bar :background green) ; The line to the left
+                 (doom-modeline-evil-emacs-state  :foreground magenta)  ; The dot color when in emacs mode
+                 (doom-modeline-evil-normal-state :foreground green)    ; The dot color when in normal mode
+                 (doom-modeline-evil-visual-state :foreground magenta)  ; The dot color when in visual mode
+                 (doom-modeline-evil-insert-state :foreground orange)   ; The dot color when in insert mode
 
-                  ;; Helm
-                  (helm-selection :foreground base :weight 'bold :background blue)
+                 ;; Helm
+                 (helm-selection :foreground base :weight 'bold :background blue)
 
-                  ;; Ivy
-                  (ivy-current-match :background overlay :distant-foreground fg)
-                  (ivy-minibuffer-match-face-1 :foreground pine :background nil :weight 'bold)
-                  (ivy-minibuffer-match-face-2 :foreground iris :background nil :weight 'bold)
-                  (ivy-minibuffer-match-face-3 :foreground gold :background nil :weight 'bold)
-                  (ivy-minibuffer-match-face-4 :foreground rose :background nil :weight 'bold)
-                  (ivy-minibuffer-match-highlight :foreground magenta :weight 'bold)
-                  (ivy-posframe :background modeline-bg-alt)
+                 ;; Ivy
+                 (ivy-current-match :background overlay :distant-foreground fg)
+                 (ivy-minibuffer-match-face-1 :foreground pine :background nil :weight 'bold)
+                 (ivy-minibuffer-match-face-2 :foreground iris :background nil :weight 'bold)
+                 (ivy-minibuffer-match-face-3 :foreground gold :background nil :weight 'bold)
+                 (ivy-minibuffer-match-face-4 :foreground rose :background nil :weight 'bold)
+                 (ivy-minibuffer-match-highlight :foreground magenta :weight 'bold)
+                 (ivy-posframe :background modeline-bg-alt)
 
-                  ;; Markdown mode
-                  (markdown-markup-face :foreground text)
-                  (markdown-header-face :inherit 'bold :foreground red)
-                  ((markdown-code-face &override) :background surface)
+                 ;; Markdown mode
+                 (markdown-markup-face :foreground text)
+                 (markdown-header-face :inherit 'bold :foreground red)
+                 ((markdown-code-face &override) :background surface)
 
-                  ;; org <built-in>
-                  (org-block :background (doom-blend yellow bg 0.04) :extend t)
-                  (org-block-background :background (doom-blend yellow bg 0.04))
-                  (org-block-begin-line :background (doom-blend yellow bg 0.08) :foreground comments :extend t)
-                  (org-block-end-line :background (doom-blend yellow bg 0.08) :foreground comments :extend t)
-                  (org-level-1 :foreground gold)
-                  (org-level-2 :foreground rose)
-                  (org-level-3 :foreground pine)
-                  (org-level-4 :foreground iris)
-                  (org-level-5 :foreground gold)
-                  (org-level-6 :foreground rose)
-                  (org-level-7 :foreground pine)
-                  (org-level-8 :foreground iris)
+                 ;; org <built-in>
+                 (org-block :background (doom-blend yellow bg 0.04) :extend t)
+                 (org-block-background :background (doom-blend yellow bg 0.04))
+                 (org-block-begin-line :background (doom-blend yellow bg 0.08) :foreground comments :extend t)
+                 (org-block-end-line :background (doom-blend yellow bg 0.08) :foreground comments :extend t)
+                 (org-level-1 :foreground gold)
+                 (org-level-2 :foreground rose)
+                 (org-level-3 :foreground pine)
+                 (org-level-4 :foreground iris)
+                 (org-level-5 :foreground gold)
+                 (org-level-6 :foreground rose)
+                 (org-level-7 :foreground pine)
+                 (org-level-8 :foreground iris)
 
-                  ;; Solaire mode line
-                  (solaire-mode-line-face
-                   :inherit 'mode-line
-                   :background modeline-bg-alt
-                   :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-alt)))
-                  (solaire-mode-line-inactive-face
-                   :inherit 'mode-line-inactive
-                   :background modeline-bg-inactive-alt
-                   :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-inactive-alt)))
+                 ;; Solaire mode line
+                 (solaire-mode-line-face
+                  :inherit 'mode-line
+                  :background modeline-bg-alt
+                  :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-alt)))
+                 (solaire-mode-line-inactive-face
+                  :inherit 'mode-line-inactive
+                  :background modeline-bg-inactive-alt
+                  :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-inactive-alt)))
 
-                  ;; Widget
-                  (widget-field :foreground fg :background muted)
-                  (widget-single-line-field :foreground fg :background muted)
+                 ;; Widget
+                 (widget-field :foreground fg :background muted)
+                 (widget-single-line-field :foreground fg :background muted)
 
-                  ;; Swiper
-                  (swiper-match-face-1 :inherit 'ivy-minibuffer-match-face-1)
-                  (swiper-match-face-2 :inherit 'ivy-minibuffer-match-face-2)
-                  (swiper-match-face-3 :inherit 'ivy-minibuffer-match-face-3)
-                  (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4))))
+                 ;; Swiper
+                 (swiper-match-face-1 :inherit 'ivy-minibuffer-match-face-1)
+                 (swiper-match-face-2 :inherit 'ivy-minibuffer-match-face-2)
+                 (swiper-match-face-3 :inherit 'ivy-minibuffer-match-face-3)
+                 (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4))))
 
 ;;; doom-rose-pine-theme.el ends here
