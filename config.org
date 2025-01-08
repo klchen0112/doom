@@ -1628,9 +1628,8 @@ use dash open app dash
 ** org noter and nov
 
 #+begin_src emacs-lisp :tangle packages.el
-;;(package! org-noter :recipe (:host github :repo "org-noter/org-noter"))
-
-;;(package! org-noter-plus :recipe (:host github :repo "yuchen-lea/org-noter-plus"))
+(package! djvu)
+(package! nov)
 #+end_src
 
 
