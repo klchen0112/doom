@@ -231,6 +231,6 @@
                   (swiper-match-face-1 :inherit 'ivy-minibuffer-match-face-1)
                   (swiper-match-face-2 :inherit 'ivy-minibuffer-match-face-2)
                   (swiper-match-face-3 :inherit 'ivy-minibuffer-match-face-3)
-                  (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4)))
+                  (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4))))
 
 ;;; doom-rose-pine-dawn-theme.el ends here
