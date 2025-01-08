@@ -139,15 +139,14 @@
                  (modeline-bg-inactive-alt    base)
                  (modeline-fg-inactive-alt    subtle)
                  (modeline-pad
-                  (when doom-rose-pine-moon-padded-modeline
-                    (if (integerp doom-rose-pine-moon-padded-modeline) doom-rose-pine-padded-modeline 4)))
+                  (if (integerp doom-rose-pine-moon-padded-modeline) doom-rose-pine-padded-modeline 4))
 
                  ;; Base theme face overrides
                  (
                   ;; Font
                   ((font-lock-comment-face &override)
-                   :slant 'italic
-                   :background (if doom-rose-pine-moon-brighter-comments (doom-blend teal base 0.07)))
+                  :slant 'italic
+                  :background (if doom-rose-pine-moon-brighter-comments (doom-blend teal base 0.07)))
                   ((font-lock-type-face &override) :slant 'italic)
                   ((font-lock-builtin-face &override) :slant 'italic)
                   ((font-lock-function-name-face &override) :foreground type)
@@ -156,7 +155,7 @@
 
                   ;; Highlight line
                   (hl-line
-                   :background surface)
+                  :background surface)
 
                   ;; Line numbers
                   ((line-number &override) :foreground muted)
@@ -164,15 +163,15 @@
 
                   ;; Mode line
                   (mode-line
-                   :background modeline-bg
-                   :foreground modeline-fg
-                   :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg)))
+                  :background modeline-bg
+                  :foreground modeline-fg
+                  :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg)))
                   (mode-line-inactive
-                   :background modeline-bg-inactive
-                   :foreground modeline-fg-inactive
-                   :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-inactive)))
+                  :background modeline-bg-inactive
+                  :foreground modeline-fg-inactive
+                  :box (if modeline-pad `(:line-width ,modeline-pad :color ,modeline-bg-inactive)))
                   (mode-line-emphasis
-                   :foreground (if doom-rose-pine-moon-brighter-modeline text subtle))
+                  :foreground (if doom-rose-pine-moon-brighter-modeline text subtle))
 
                   ;; Company
                   (company-tooltip-selection :background blue :foreground muted)

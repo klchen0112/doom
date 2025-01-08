@@ -132,8 +132,7 @@
                  (modeline-bg-inactive-alt   base)
                  (modeline-fg-inactive-alt   subtle)
                  (modeline-pad
-                  (when doom-rose-pine-moon-padded-modeline
-                    (if (integerp doom-rose-pine-dawn-padded-modeline) doom-rose-pine-padded-modeline 4)))
+                  (if (integerp doom-rose-pine-dawn-padded-modeline) doom-rose-pine-padded-modeline 4))
 
                  ;; Base theme face overrides
                  (
