@@ -487,7 +487,7 @@
                          doom-old-hope doom-oceanic-next doom-monokai-pro doom-material doom-henna
                          doom-ephemeral chocolate doom-zenburn doom-peacock doom-1337 doom-rose-pine doom-rose-pine-moon ))
 
-(setq doom-themes-light '(doom-one-light doom-solarized-light  doom-opera-light doom-rose-pine-wn))
+(setq doom-themes-light '(doom-one-light doom-solarized-light  doom-opera-light doom-rose-pine-dawn))
 
 (defun random-choice (items)
   "Random choice a list"
