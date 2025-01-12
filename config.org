@@ -5,8 +5,7 @@
 * Init.el
 #+begin_src emacs-lisp :tangle init.el
 ;;; init.el -*- lexical-binding: t; -*-
-                                        ;   ;
-
+(setenv "LSP_USE_PLISTS" "true")
 ;; This file controls what jDoom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
@@ -264,7 +263,6 @@
        :config
        ;;literate
        (default +bindings +smartparens))
-(setenv "LSP_USE_PLISTS" "true")
 #+end_src
 * packages.el
 
