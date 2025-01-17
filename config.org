@@ -457,6 +457,7 @@
 ** theme
 
 #+begin_src emacs-lisp :tangle packages.el
+(package! catppuccin-theme)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -474,7 +475,7 @@
   ;;(doom-themes-treemacs-config)
   (doom-themes-org-config))
 
-
+(setq doom-theme 'catppuccin)
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
