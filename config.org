@@ -595,19 +595,28 @@
 #+end_src
 ** Tree siter
 #+begin_src emacs-lisp tangle: packages.el
-;; (package! treesit-auto :recipe (:host github :repo "renzmann/treesit-auto" :files ("*.el" "dist")) :pin "016bd286a1ba4628f833a626f8b9d497882ecdf3")
-;; (package! treesit-fold :recipe (:host github :repo "emacs-tree-sitter/treesit-fold" :pin "7aa6f5d1e23dda4708e286977d7f4a6a7a5b441f"))
+(package! treesit-auto
+  :recipe (:host github
+           :repo "renzmann/treesit-auto"
+           :files ("*.el" "dist")
+           :build (:not autoloads)
+           :build (:not compile))
+  :pin "016bd286a1ba4628f833a626f8b9d497882ecdf3")
+(package! treesit-fold
+  :recipe (:host github
+           :repo "emacs-tree-sitter/treesit-fold"
+           :pin "fe10708cf9bd7df36e017c1a3561ae371d6d5ea7"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-;; (use-package! treesit-auto
-;;     :custom
-;;   (treesit-auto-install 'prompt)
-;;   :config
-;;   (treesit-auto-add-to-auto-mode-alist 'all)
-;;   (global-treesit-auto-mode)
-;; )
-;; (use-package! treesit-fold)
+(use-package! treesit-auto
+    :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode)
+)
+(use-package! treesit-fold)
 #+end_src
 * Biblio
 ** init biblio
@@ -1464,6 +1473,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ** Lsp booster
 #+begin_src emacs-lisp :tangle config.el
 (after! lsp-mode
+  (setq lsp-ui-doc-show-with-cursor t)
   (defun lsp-booster--advice-json-parse (old-fn &rest args)
     "Try to parse bytecode instead of json."
     (or
@@ -1509,12 +1519,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;;(setq ts-docstr-key-support t)
 ;;(setq ts-docstr-ask-on-enable t))
 #+end_src
-** LSP mode
-#+begin_src emacs-lisp :tangle config.el
-(after! lsp-mode
-  (setq lsp-ui-doc-show-with-cursor t)
-)
-#+end_src
+
 ** python
 *** conda and micromamba opt
 
