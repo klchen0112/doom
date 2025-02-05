@@ -1055,71 +1055,71 @@ citar need vertico
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
   :hook (org-roam-db-autosync-mode . vulpea-db-autosync-enable)
-:commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
-:init
-(add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
-(add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
-(advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
-:config
-(defun bmg/vulpea-project-p ()
-  "Return non-nil if current buffer has any todo entry.
+  :commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
+  :init
+  (add-hook 'find-file-hook #'bmg/vulpea-project-update-tag)
+  (add-hook 'before-save-hook #'bmg/vulpea-project-update-tag)
+  (advice-add 'org-agenda :before #'bmg/vulpea-agenda-files-update)
+  :config
+  (defun bmg/vulpea-project-p ()
+    "Return non-nil if current buffer has any todo entry.
 TODO entries marked as done are ignored, meaning the this
 function returns nil if current buffer contains only completed
 tasks."
-  (seq-find                                 ; (3)
-   (lambda (type)
+    (seq-find                                 ; (3)
+     (lambda (type)
      (eq type 'todo))
-   (org-element-map                         ; (2)
+     (org-element-map                         ; (2)
        (org-element-parse-buffer 'headline) ; (1)
        'headline
      (lambda (h)
        (org-element-property :todo-type h)))))
 
-(defun bmg/vulpea-project-update-tag ()
-  "Update PROJECT tag in the current buffer."
-  (when (and (not (active-minibuffer-window))
-             (bmg/vulpea-buffer-p))
-    (save-excursion
-      (goto-char (point-min))
-      (let* ((tags (vulpea-buffer-tags-get))
-             (original-tags tags))
-        (if (bmg/vulpea-project-p)
-            (setq tags (cons "org-roam-agenda" tags))
-          (setq tags (remove "org-roam-agenda" tags)))
+  (defun bmg/vulpea-project-update-tag ()
+    "Update PROJECT tag in the current buffer."
+    (when (and (not (active-minibuffer-window))
+               (bmg/vulpea-buffer-p))
+      (save-excursion
+        (goto-char (point-min))
+        (let* ((tags (vulpea-buffer-tags-get))
+               (original-tags tags))
+          (if (bmg/vulpea-project-p)
+              (setq tags (cons "org-roam-agenda" tags))
+            (setq tags (remove "org-roam-agenda" tags)))
 
-        ;; cleanup duplicates
-        (setq tags (seq-uniq tags))
+          ;; cleanup duplicates
+          (setq tags (seq-uniq tags))
 
-        ;; update tags if changed
-        (when (or (seq-difference tags original-tags)
-                  (seq-difference original-tags tags))
-          (apply #'vulpea-buffer-tags-set tags))))))
+          ;; update tags if changed
+          (when (or (seq-difference tags original-tags)
+                    (seq-difference original-tags tags))
+            (apply #'vulpea-buffer-tags-set tags))))))
 
-(defun bmg/vulpea-buffer-p ()
-  "Return non-nil if the currently visited buffer is a note."
-  (and buffer-file-name
-       (string-prefix-p
-        (expand-file-name (file-name-as-directory org-roam-directory))
-        (file-name-directory buffer-file-name))))
+  (defun bmg/vulpea-buffer-p ()
+    "Return non-nil if the currently visited buffer is a note."
+    (and buffer-file-name
+         (string-prefix-p
+          (expand-file-name (file-name-as-directory org-roam-directory))
+          (file-name-directory buffer-file-name))))
 
-(defun bmg/vulpea-project-files ()
-  "Return a list of note files containing \='project\=' tag." ;
-  (seq-uniq
-   (seq-map
-    #'car
-    (org-roam-db-query
-     [:select [nodes:file]
-      :from tags
-      :left-join nodes
-      :on (= tags:node-id nodes:id)
-      :where (like tag (quote "%\"org-roam-agenda\"%"))]))))
+  (defun bmg/vulpea-project-files ()
+    "Return a list of note files containing \='project\=' tag." ;
+    (seq-uniq
+     (seq-map
+      #'car
+      (org-roam-db-query
+       [:select [nodes:file]
+        :from tags
+        :left-join nodes
+        :on (= tags:node-id nodes:id)
+        :where (like tag (quote "%\"org-roam-agenda\"%"))]))))
 
-(defun bmg/vulpea-agenda-files-update (&rest _)
-  "Update the value of `org-agenda-files'."
-  (setq org-agenda-files (bmg/vulpea-project-files)))
+  (defun bmg/vulpea-agenda-files-update (&rest _)
+    "Update the value of `org-agenda-files'."
+    (setq org-agenda-files (bmg/vulpea-project-files)))
 
-(defun bmg/vulpea-agenda-category (&optional len)
-  "Get category of item at point for agenda.
+  (defun bmg/vulpea-agenda-category (&optional len)
+    "Get category of item at point for agenda.
 
 Category is defined by one of the following items:
 
@@ -1138,22 +1138,22 @@ Usage example:
         \='((agenda . \" %(vulpea-agenda-category) %?-12t %12s\")))
 
 Refer to \=`org-agenda-prefix-format\=' for more information."
-  (let* ((file-name (when buffer-file-name
-                      (file-name-sans-extension
-                       (file-name-nondirectory buffer-file-name))))
-         (title (vulpea-buffer-prop-get "title"))
-         (category (org-get-category))
-         (result
-          (or (if (and
-                   title
-                   (string-equal category file-name))
-                  title
-                category)
-              "")))
-    (if (numberp len)
-        (s-truncate len (s-pad-right len " " result))
-      result)))
-)
+    (let* ((file-name (when buffer-file-name
+                        (file-name-sans-extension
+                         (file-name-nondirectory buffer-file-name))))
+           (title (vulpea-buffer-prop-get "title"))
+           (category (org-get-category))
+           (result
+            (or (if (and
+                     title
+                     (string-equal category file-name))
+                    title
+                  category)
+                "")))
+      (if (numberp len)
+          (s-truncate len (s-pad-right len " " result))
+        result)))
+  )
 (use-package! org-super-agenda
   :init
   (setq org-agenda-prefix-format
@@ -1313,7 +1313,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 2. 加入了中英文自动检测
 *** Package
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 ;; (package! rime :built-in t)
 ;; (package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
 #+end_src
