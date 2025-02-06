@@ -753,7 +753,7 @@ citar need vertico
               "(provide 'org-version)\n"))))
   :pin nil)
 
-;; (unpin! org)
+(unpin! org)
 #+end_src
 
 #+begin_src emacs-lisp :tangle no
@@ -1286,14 +1286,14 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
 (package! sis)
-))
+)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
 (if IS-MAC
     (use-package! sis
-      ;; :init
-      ;; (add-hook 'meow-insert-exit-hook #'sis-set-english)
+      :init
+      (add-hook 'meow-insert-exit-hook #'sis-set-english)
       :config
       (sis-ism-lazyman-config
        "com.apple.keylayout.UnicodeHexInput"
