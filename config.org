@@ -728,7 +728,10 @@ citar need vertico
 
 * org mode
 ** async preview
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle packages.el
+
+(unpin! org)
+
 (package! org :recipe
   (:host nil :repo "https://git.tecosaur.net/mirrors/org-mode.git" :remote "mirror" :fork
          (:host nil :repo "https://git.tecosaur.net/tec/org-mode.git" :branch "dev" :remote "tecosaur")
@@ -753,11 +756,11 @@ citar need vertico
               "(provide 'org-version)\n"))))
   :pin nil)
 
-(unpin! org)
+
 #+end_src
 
-#+begin_src emacs-lisp :tangle no
-(use-package    ! org-latex-preview
+#+begin_src emacs-lisp :tangle config.el
+(use-package! org-latex-preview
   :config
   (org-latex-preview-auto-mode)
   ;; Increase preview width
