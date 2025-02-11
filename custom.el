@@ -5,7 +5,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values
-   '((gac-automatically-push-p . t) (gac-debounce-interval . 600))))
+      '((gac-automatically-push-p . t) (gac-debounce-interval . 600)))
+ '(safe-local-variable-values '((git-auto-commit-mode 1))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
