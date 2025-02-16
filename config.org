@@ -540,18 +540,18 @@
 ** 分词
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
-(package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) :pin "7bea66de1b26d3f3f1cf9e940b269809c0c531b9")
-)
+    (package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) :pin "7bea66de1b26d3f3f1cf9e940b269809c0c531b9")
+  )
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
 (if IS-MAC
-  (use-package! emt
-    :config
-    (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
-  )
+    (use-package! emt
+      :config
+      (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
+      )
   (add-hook 'after-init-hook #'emt-mode)
-)
+  )
 #+end_src
 ** save
 
@@ -568,6 +568,8 @@
 #+begin_src emacs-lisp :tangle config.el
 
 (use-package! dired-preview
+  :defer t
+  :after dired
   :config
   ;; Default values for demo purposes
   (setq dired-preview-delay 0.7)
@@ -633,6 +635,7 @@ citar need vertico
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! citar
+  :after org
   :config
   (setq citar-bibliography my/bib
         citar-notes-paths '("~/org/references/")
@@ -670,7 +673,7 @@ citar need vertico
 
 (use-package! citar-embark
   :config (citar-embark-mode)
-)
+  )
 #+end_src
 ** org roam bibtex
 
@@ -683,6 +686,7 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;; Org-Roam-Bibtex
 (use-package! org-roam-bibtex
+ :after org-roam
  :custom
  (orb-note-actions-interface 'default)
  :config
@@ -717,7 +721,7 @@ citar need vertico
 
 
 (use-package! citar-org-roam
-
+  :after (org-roam citar)
   :config
   (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template (cdr (assoc 'note citar-templates)))
@@ -1658,7 +1662,8 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! just-mode
-  :defer t)
+  :defer t
+)
 
 (use-package! justl
   :defer t
@@ -1678,6 +1683,7 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-noter
+  :after org
   :config
   (setq org-noter-notes-search-path (concat org-directory "references"))
   (setq org-noter-alway-create-frame t)
@@ -1746,8 +1752,8 @@ use dash open app dash
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-ai
   :commands (org-ai-mode org-ai-global-mode)
+  :hook (org-mode . org-ai-mode)
   :init
-  (add-hook 'org-mode-hook #'org-ai-mode)
   (org-ai-global-mode)
   :config
   ;;(setq org-ai-default-chat-model "gpt-4") ; if you are on the gpt-4 beta:
