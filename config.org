@@ -284,22 +284,20 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snipets. It is optional.
 (setq user-full-name "klchen0112"
-    user-mail-address "klchen0112@gmail.com")
+      user-mail-address "klchen0112@gmail.com")
 
-(setq-default
- delete-by-moving-to-trash t                      ; Delete files to trash
- window-combination-resize t                      ; take new window space from all other windows (not just current)
- x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+(setq delete-by-moving-to-trash t                      ; Delete files to trash
+      window-combination-resize t                      ; take new window space from all other windows (not just current)
+      x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 ;; Simple Settings
-(setq-default
- dired-dwim-target t
- history-length 1000
- create-lockfiles nil
- delete-by-moving-to-trash t                      ; Delete files to trash
- window-combination-resize t                      ; take new window space from all other windows (not just current)
- x-stretch-cursor t                              ; Stretch cursor to the glyph width
-)
+(setq dired-dwim-target t
+      history-length 1000
+      create-lockfiles nil
+      delete-by-moving-to-trash t                      ; Delete files to trash
+      window-combination-resize t                      ; take new window space from all other windows (not just current)
+      x-stretch-cursor t                              ; Stretch cursor to the glyph width
+      )
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
@@ -313,15 +311,15 @@
 (setq which-key-idle-delay 0.3) ;; I need the help, I really do
 
 ;; Drag text from emacs to other apps
-(setq
- mouse-drag-and-drop-region-cross-program t
- mouse-drag-and-drop-region t)
+(setq mouse-drag-and-drop-region-cross-program t
+      mouse-drag-and-drop-region t)
+
 (pixel-scroll-mode)
 (pixel-scroll-precision-mode 1)
 
 (setq org-directory "~/org"
-   org-roam-directory "~/org"
-   org-roam-file-extensions '("org"))
+      org-roam-directory "~/org"
+      org-roam-file-extensions '("org"))
 #+end_src
 
 ** exec path
