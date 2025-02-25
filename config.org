@@ -1543,13 +1543,13 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+end_src
 *** ruff
 #+begin_src emacs-lisp :tangle packages.el
-(package! ruff-format)
+(package! lazy-ruff)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! ruff-format
- :hook
- (python-base-mode . #'ruff-format-on-save-mode)
+(use-package! lazy-ruff
+  :config
+  (lazy-ruff-global-mode t)
 )
 #+end_src
 *** virtual enviroment
@@ -1559,8 +1559,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
-  :hook
-  (python-base-mode . #'pet-mode)
+  ;;:hook
+  ;;(python-base-mode . #'pet-mode)
 )
 #+end_src
 ** Latex mode
