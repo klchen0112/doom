@@ -300,7 +300,6 @@
       )
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
       auto-save-default t                         ; Nobody likes to loose work, I certainly don't
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       password-cache-expiry nil                   ; I can trust my computers ... can't I?
@@ -630,11 +629,11 @@
 #+end_src
 
 ** citar
-
 citar need vertico
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! citar
+  :defer t
   :after org
   :config
   (setq citar-bibliography my/bib
@@ -673,7 +672,7 @@ citar need vertico
 
 (use-package! citar-embark
   :config (citar-embark-mode)
-  )
+)
 #+end_src
 ** org roam bibtex
 
@@ -686,11 +685,12 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;; Org-Roam-Bibtex
 (use-package! org-roam-bibtex
- :after org-roam
- :custom
- (orb-note-actions-interface 'default)
- :config
- (setq
+  :defer t
+  :after org-roam
+  :custom
+  (orb-note-actions-interface 'default)
+  :config
+  (setq
   orb-preformat-keywords
   '("citekey" "title" "url" "file" "author-or-editor" "keywords")
   orb-insert-link-description 'title
@@ -703,31 +703,24 @@ citar need vertico
   citar-at-point-function 'embark-act
   citar-file-note-org-include '(org-id org-roam-ref)
   orb-insert-generic-candidates-format '("title" "author-or-editor" "keyword"))
- (add-to-list 'org-roam-capture-templates
-                ;; bibliography note template
-                '("r" "bibliography reference" plain
-                 (file  "~/org/templates/orb_template.org")
-                 :if-new
-                 (file+head "references/${citekey}.org" "#+title: ${title}\n#+filetags: :references:\n")
-                 :unnarrowed t))
- (add-to-list 'org-roam-capture-templates
+  (add-to-list 'org-roam-capture-templates
+              ;; bibliography note template
+              '("r" "bibliography reference" plain
+                (file  "~/org/templates/orb_template.org")
+                :if-new
+                (file+head "references/${citekey}.org" "#+title: ${title}\n#+filetags: :references:\n")
+                :unnarrowed t))
+  (add-to-list 'org-roam-capture-templates
               '("s" "short bibliography reference (no id)"
-                  entry "* ${title} [cite:@%^{citekey}]\n%?"
-                 :target (node "b93ffb0a-9383-4255-80ed-1142639fa458")
-                 :unnarrowed t
-                 :empty-lines-before 1
-                 :prepend t))
-)
+                entry "* ${title} [cite:@%^{citekey}]\n%?"
+                :target (node "b93ffb0a-9383-4255-80ed-1142639fa458")
+                :unnarrowed t
+                :empty-lines-before 1
+                :prepend t))
+  )
 
 
-(use-package! citar-org-roam
-  :after (org-roam citar)
-  :config
-  (citar-org-roam-mode)
-  (setq citar-org-roam-note-title-template (cdr (assoc 'note citar-templates)))
-)
 #+end_src
-
 * org mode
 ** async preview
 #+begin_src emacs-lisp :tangle packages.el
@@ -857,14 +850,14 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 
 (use-package! org-modern
-
+  :after org
   :init
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
   )
 
 (use-package! org-appear
-
+  :after org
   :init
   (add-hook 'org-mode-hook #'org-appear-mode)
   :config
@@ -883,7 +876,8 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;; config org download
 (use-package! org-download
-
+  :after org
+  :defer t
   :config
   (setq org-download-method 'directory)
   (setq org-download-image-dir "~/Library/Mobile Documents/com~apple~CloudDocs/Documents/org-attach")
@@ -895,7 +889,7 @@ citar need vertico
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-agenda
-
+  :after org
   :config
 
   (setq org-agenda-files '("~/org/pages/TODO.org"))
@@ -920,7 +914,8 @@ citar need vertico
 
 #+begin_src elisp :tangle config.el
 (use-package! ox-hugo
-
+  :after org
+  :defer t
   :config
   (setq org-hugo-default-static-subdirectory-for-externals "img")
 )
@@ -948,7 +943,7 @@ citar need vertico
 
 
 (use-package! org-roam
-
+  :after org
   :commands (org-roam-buffer
              org-roam-setup
              org-roam-capture
@@ -994,7 +989,7 @@ citar need vertico
 
 
 (use-package! org-roam-ui
-
+  :after org-roam
   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
   ;;         a hookable mode anymore, you're advised to pick something yourself
   ;;         if you don't care about startup time, use
@@ -1016,7 +1011,8 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;;自动创建笔记的创建时间和修改时间
 (use-package! org-roam-timestamps
-
+  :after org-roam
+  :defer t
   :config
   (org-roam-timestamps-mode)
   (setq org-roam-timestamps-parent-file t))
@@ -1031,7 +1027,8 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;;跨文件的引用，能够实现笔记的一处修改，处处修改。
 (use-package! org-transclusion
-
+  :after org-roam
+  :defer t
   :commands org-transclusion-mode
   :init
   (map!
@@ -1058,6 +1055,7 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 ;; this code from https://github.com/brianmcgillion/doomd/blob/master/config.org
 (use-package! vulpea
+  :after org-roam
   :hook (org-roam-db-autosync-mode . vulpea-db-autosync-enable)
   :commands (bmg/vulpea-agenda-files-update bmg/vulpea-project-update-tag)
   :init
@@ -1159,6 +1157,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
         result)))
   )
 (use-package! org-super-agenda
+  :after org
   :init
   (setq org-agenda-prefix-format
         '((agenda . " %i %(bmg/vulpea-agenda-category 12)%?-12t% s")
@@ -1206,6 +1205,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;; "g r" 'org-roam-review-refresh)
 ;;)
 (use-package! consult-org-roam
+  :after org-roam
   :init
   (consult-org-roam-mode 1)
   :custom
@@ -1281,8 +1281,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+end_src
 
-#+RESULTS:
-: t
 
 * Input Method
 ** smart input source
@@ -1548,19 +1546,21 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! lazy-ruff
+  :defer t
   :config
   (lazy-ruff-global-mode t)
 )
 #+end_src
 *** virtual enviroment
 #+begin_src emacs-lisp :tangle packages.el
-(package! pet :recipe (:host github :repo "wyuenho/emacs-pet") :pin "5bc9cb882ad29f22ea049de2ab73c01b66c739d7")
+(package! pet :recipe (:host github :repo "wyuenho/emacs-pet"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
-  ;;:hook
-  ;;(python-base-mode . #'pet-mode)
+  :defer t
+  :hook
+  (python-base-mode . #'pet-mode)
 )
 #+end_src
 ** Latex mode
@@ -1683,6 +1683,7 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-noter
+  :defer t
   :after org
   :config
   (setq org-noter-notes-search-path (concat org-directory "references"))
@@ -1751,6 +1752,8 @@ use dash open app dash
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-ai
+  :defer t
+  :after org
   :commands (org-ai-mode org-ai-global-mode)
   :hook (org-mode . org-ai-mode)
   :init
@@ -1786,9 +1789,11 @@ use dash open app dash
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(use-package! git-link)
+(use-package! git-link
+  :defer t)
 
 (use-package! magit-file-icons
+  :defer t
   :after magit
   :init
   (magit-file-icons-mode 1)
