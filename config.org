@@ -264,6 +264,9 @@
        literate
        (default +bindings +smartparens))
 #+end_src
+
+#+RESULTS:
+
 * packages.el
 
 #+begin_src emacs-lisp :tangle packages.el
@@ -603,10 +606,10 @@
 ;;            :build (:not autoloads)
 ;;            :build (:not compile))
 ;;   :pin "016bd286a1ba4628f833a626f8b9d497882ecdf3")
-(package! treesit-fold
-  :recipe (:host github
-           :repo "emacs-tree-sitter/treesit-fold"
-           ))
+;;(package! treesit-fold
+;;  :recipe (:host github
+;;           :repo "emacs-tree-sitter/treesit-fold"
+;;           ))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -617,7 +620,7 @@
 ;;   (treesit-auto-add-to-auto-mode-alist 'all)
 ;;   (global-treesit-auto-mode)
 ;; )
-(use-package! treesit-fold)
+;;(use-package! treesit-fold)
 #+end_src
 * Biblio
 ** init biblio
