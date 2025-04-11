@@ -1744,7 +1744,6 @@ use dash open app dash
 ;; 获得当前的repo commit的连接
 (package! git-link)
 ;; magti file icons
-(package! magit-file-icons)
 
 (package! git-auto-commit-mode)
 #+end_src
@@ -1753,16 +1752,13 @@ use dash open app dash
 (use-package! git-link
   :defer t)
 
-(use-package! magit-file-icons
-  :defer t
-  :after magit
-  :init
-  (magit-file-icons-mode 1)
+(use-package! magit
+  :ensure t
+  :after nerd-icons
   :custom
-  ;; These are the default values:
-  (magit-file-icons-enable-diff-file-section-icons t)
-  (magit-file-icons-enable-untracked-icons t)
-  (magit-file-icons-enable-diffstat-icons t))
+  (magit-format-file-function #'magit-format-file-nerd-icons))
+
+
 #+end_src
 
 * Other module
