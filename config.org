@@ -542,7 +542,7 @@
 ** 分词
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
-  (package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) )
+  (package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) :pin b7f46fae280dba3269e9110f3cb61d2dd4fa67cc)
 )
 #+end_src
 
@@ -841,40 +841,6 @@ citar need vertico
 
 #+end_src
 
-** org 美化
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! org-modern)
-(package! org-appear)
-
-#+end_src
-
-
-#+begin_src emacs-lisp :tangle config.el
-
-(use-package! org-modern
-  :after org
-  :init
-  (add-hook 'org-mode-hook #'org-modern-mode)
-  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
-  )
-
-(use-package! org-appear
-  :after org
-  :init
-  (add-hook 'org-mode-hook #'org-appear-mode)
-  :config
-  (setq org-appear-autoemphasis t
-        org-appear-autolinks t
-        org-appear-autosubmarkers t
-        org-appear-autoentities t
-        org-appear-autokeywords t
-        org-appear-inside-latex t
-        )
-  )
-
-#+end_src
-
 ** org-download
 #+begin_src emacs-lisp :tangle config.el
 ;; config org download
@@ -929,11 +895,8 @@ citar need vertico
 ** org-roam settings
 
 #+begin_src elisp :tangle packages.el
-;; (unpin! org-roam)
 
-;; (unpin! org-roam-ui)
-
-(package! consult-org-roam)
+(package consult-org-roam)
 
 #+end_src
 1. 设置org-roam templates 可以与 org-capture 混合使用
@@ -1290,7 +1253,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
-(package! sis)
+    (package! sis)
 )
 #+end_src
 
