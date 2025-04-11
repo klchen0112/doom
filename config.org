@@ -755,7 +755,7 @@ citar need vertico
 
 #+end_src
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp :tangle no
 (use-package! org-latex-preview
   :after org
   :config
