@@ -542,7 +542,7 @@
 ** 分词
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
-  (package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) :pin b7f46fae280dba3269e9110f3cb61d2dd4fa67cc)
+  (package! emt :recipe (:host github :repo "roife/emt" :files ("*.el" "module/*" "module")) :pin "b7f46fae280dba3269e9110f3cb61d2dd4fa67cc")
 )
 #+end_src
 
