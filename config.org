@@ -894,11 +894,6 @@ citar need vertico
 
 ** org-roam settings
 
-#+begin_src elisp :tangle packages.el
-
-(package consult-org-roam)
-
-#+end_src
 1. 设置org-roam templates 可以与 org-capture 混合使用
 2. 自动创建笔记的创建时间和修改时间
 3. 跨文件的引用，能够实现笔记的一处修改，处处修改
