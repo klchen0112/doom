@@ -1489,17 +1489,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+end_src
 
 ** python
-*** conda and micromamba opt
-
-#+begin_src emacs-lisp :tangle packages.el
-;; (if IS-MAC (package! micromamba))
-#+end_src
-
-#+begin_src emacs-lisp :tangle no
-;; (if IS-MAC
-  ;; (use-package! micromamba)
-;; )
-#+end_src
 *** ruff
 #+begin_src emacs-lisp :tangle packages.el
 (package! lazy-ruff)
@@ -1512,6 +1501,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   (lazy-ruff-global-mode t)
 )
 #+end_src
+
 *** virtual enviroment
 #+begin_src emacs-lisp :tangle packages.el
 (package! pet :recipe (:host github :repo "wyuenho/emacs-pet"))
@@ -1519,9 +1509,38 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
-  :defer t
-  :hook
-  (python-base-mode . #'pet-mode)
+  :ensure-system-package (dasel sqlite3)
+  :config
+   (add-hook 'python-mode-hook
+            (lambda ()
+              (setq-local python-shell-interpreter (pet-executable-find "python")
+                          python-shell-virtualenv-root (pet-virtualenv-root))
+                          (pet-flycheck-setup)
+              (flycheck-mode)
+
+              (setq-local lsp-jedi-executable-command
+                          (pet-executable-find "jedi-language-server"))
+
+              (setq-local lsp-pyright-python-executable-cmd python-shell-interpreter
+                          lsp-pyright-venv-path python-shell-virtualenv-root)
+
+              (lsp)
+
+              (setq-local dap-python-executable python-shell-interpreter)
+
+              (setq-local python-pytest-executable (pet-executable-find "pytest"))
+
+              (when-let ((ruff-executable (pet-executable-find "ruff")))
+                (setq-local ruff-format-command ruff-executable)
+                (ruff-format-on-save-mode))
+
+              (when-let ((black-executable (pet-executable-find "black")))
+                (setq-local python-black-command black-executable)
+                (python-black-on-save-mode))
+
+              (when-let ((isort-executable (pet-executable-find "isort")))
+                (setq-local python-isort-command isort-executable)
+                (python-isort-on-save-mode))))
 )
 #+end_src
 ** Latex mode
