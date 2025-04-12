@@ -215,6 +215,7 @@
         +pandoc                     ; export-with-pandoc support
         ;;+pomodoro                 ; be fruitful with the tomato technique
         ;;+present                    ; using org-mode for presentations
+
         +roam2)                     ; wander around notes
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -1492,6 +1493,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 *** ruff
 #+begin_src emacs-lisp :tangle packages.el
 (package! lazy-ruff)
+(package! ruff-format)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -1500,6 +1502,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   :config
   (lazy-ruff-global-mode t)
 )
+(use-package! ruff-format)
 #+end_src
 
 *** virtual enviroment
