@@ -210,7 +210,7 @@
         +hugo                     ; use Emacs for hugo blogging
         ;; +journal ;; use org roam dailyies
         +noter ;; enhanced pdf notetaking
-        ;;+pretty                     ; yessss my pretties! (nice unicode symbols)
+        +pretty                     ; yessss my pretties! (nice unicode symbols)
         ;;+jupyter                    ; ipython/jupyter support for babel
         +pandoc                     ; export-with-pandoc support
         ;;+pomodoro                 ; be fruitful with the tomato technique
