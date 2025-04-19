@@ -894,9 +894,9 @@ citar need vertico
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-modern
   :config
-  (org-modern-block-indent t)
-  (org-startup-indented t)
-  )
+  (setq )
+
+)
 #+end_src
 
 * org-roam
@@ -1448,8 +1448,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+end_src
 ** Lsp booster
 #+begin_src emacs-lisp :tangle config.el
-(after! lsp-mode
-  (setq lsp-ui-doc-show-with-cursor t)
+;; (after! lsp-mode
+  ;; (setq lsp-ui-doc-show-with-cursor t)
   ;; (defun lsp-booster--advice-json-parse (old-fn &rest args)
   ;;   "Try to parse bytecode instead of json."
   ;;   (or
@@ -1480,7 +1480,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   ;;           (cons "emacs-lsp-booster" orig-result))
   ;;       orig-result)))
   ;; (advice-add 'lsp-resolve-final-command :around #'lsp-booster--advice-final-command)
-)
+;; )
 #+end_src
 * Lang
 ** Docstr
