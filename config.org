@@ -549,11 +549,11 @@
 
 #+begin_src emacs-lisp :tangle config.el
 (if IS-MAC
-    (use-package! emt
-      :config
-      (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
-      )
-  (add-hook 'after-init-hook #'emt-mode)
+    ((use-package! emt
+       :config
+       (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
+       )
+     (add-hook 'after-init-hook #'emt-mode))
   )
 #+end_src
 ** save
