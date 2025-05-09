@@ -458,7 +458,6 @@
 ** theme
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! catppuccin-theme)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -476,7 +475,6 @@
   ;;(doom-themes-treemacs-config)
   (doom-themes-org-config))
 
-(setq doom-theme 'catppuccin)
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -1505,7 +1503,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! lazy-ruff
-  :defer t
+  :after python
   :config
   (lazy-ruff-global-mode t)
 )
@@ -1519,6 +1517,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+begin_src emacs-lisp :tangle config.el
 (use-package! pet
   :ensure-system-package (dasel sqlite3)
+  :defer t
+  :after python
   :config
   (add-hook 'python-mode-hook
             (lambda ()
@@ -1542,6 +1542,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
               )
             )
   )
+(add-hook 'change-major-mode-after-body-hook 'envrc-mode)
 #+end_src
 ** Latex mode
 *** Latex Preview
@@ -1650,8 +1651,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! org-noter
-  :defer t
-  :after org
   :config
   (setq org-noter-notes-search-path (concat org-directory "references"))
   (setq org-noter-alway-create-frame t)
@@ -1696,6 +1695,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle config.el
 ;; (use-package! org-anki)
+
 #+end_src
 * APP
 
