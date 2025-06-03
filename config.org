@@ -896,6 +896,17 @@ citar need vertico
 
 )
 #+end_src
+** org mermaid
+#+begin_src emacs-lisp :tangle packages.el
+(package! ob-mermaid)
+#+end_src
+
+#+begin_src emacs-lisp :tangle config.el
+(setq ob-mermaid-cli-path (concat "/etc/profiles/per-user/" username "/bin/mmdc"))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((mermaid . t)))
+#+end_src
 
 * org-roam
 
