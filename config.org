@@ -903,7 +903,7 @@ citar need vertico
 
 #+begin_src emacs-lisp :tangle config.el
 (setq ob-mermaid-cli-path
-      (concat "/etc/profiles/per-user/" username "/bin/mmdc"))
+      (concat "/etc/profiles/per-user/" user-login-name "/bin/mmdc"))
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((mermaid . t)))
