@@ -547,13 +547,13 @@
 
 #+begin_src emacs-lisp :tangle config.el
 (if IS-MAC
-    ((use-package! emt
-       :config
-       (setq emt-lib-path (concat doom-data-dir "EMT/libEMT.dylib"))
-       )
-     (add-hook 'after-init-hook #'emt-mode))
+    (use-package! emt
+      :config
+      (add-hook 'after-init-hook #'emt-mode))
   )
 #+end_src
+
+
 ** save
 
 #+begin_src emacs-lisp :tangle config.el
@@ -902,7 +902,8 @@ citar need vertico
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(setq ob-mermaid-cli-path (concat "/etc/profiles/per-user/" username "/bin/mmdc"))
+(setq ob-mermaid-cli-path
+      (concat "/etc/profiles/per-user/" username "/bin/mmdc"))
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((mermaid . t)))
