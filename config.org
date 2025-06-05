@@ -322,7 +322,7 @@
 
 (setq org-directory "~/org"
       org-roam-directory "~/org"
-      org-roam-dailies-directory "journals/"
+      org-roam-dailies-directory (concat org-roam-directory "/journals/")
       org-roam-file-extensions '("org"))
 #+end_src
 
