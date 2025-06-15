@@ -215,7 +215,6 @@
         +pandoc                     ; export-with-pandoc support
         ;;+pomodoro                 ; be fruitful with the tomato technique
         ;;+present                    ; using org-mode for presentations
-
         +roam2)                     ; wander around notes
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -360,12 +359,12 @@
 * start benchmark
 
 #+begin_src emacs-lisp :tangle packages.el
-;;(package! benchmark-init)
+(package! benchmark-init)
 #+end_src
 #+begin_src emacs-lisp :tangle init.el
-;;(when init-file-debug
-;;  (require 'benchmark-init)
-;;  (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
+(when init-file-debug
+ (require 'benchmark-init)
+ (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
 #+end_src
 
 
@@ -424,11 +423,12 @@
 
 (cond
   ((or IS-MAC IS-LINUX)
-    (setq doom-font (if IS-MAC (font-spec :family "SF Mono"  :size 16) (font-spec :family "Iosevka" :size 16))
+    (setq doom-font  (font-spec :family "Iosevka Nerd Font" :size 16)
           ;; doom-big-font (font-spec :family "Iosevka"  :size 28)
           doom-variable-pitch-font (font-spec :family "CMU Typewriter Text"  :size 18)
           ;;doom-unicode-font (font-spec :family "FZSongKeBenXiuKai-R-GBK" :weight 'light :slant 'italic :size 21)
-          doom-serif-font (font-spec :family "IBM Plex Serif"  :size 18))
+          doom-serif-font (font-spec :family "IBM Plex Serif"  :size 18)
+    )
     (add-hook!  'after-setting-font-hook
           ;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴
           (set-fontset-font t 'symbol   (font-spec :family "Apple Color Emoji"  ))
@@ -792,6 +792,7 @@ citar need vertico
 ;; change `org-directory'. It must be set before org loads!
 
 (use-package! org
+  :defer t
   :config
   (setq org-directory "~/org/")
   ;; pretty org files
@@ -860,7 +861,6 @@ citar need vertico
 (use-package! org-agenda
   :after org
   :config
-
   (setq org-agenda-files '("~/org/pages/TODO.org"))
   ;; 时间前导0
   (setq org-agenda-time-leading-zero t)
