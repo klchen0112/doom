@@ -440,9 +440,9 @@
           (set-fontset-font t 'symbol   (font-spec :family "FreeSerif"          ))
           (set-fontset-font t 'symbol   (font-spec :family "Twitter Color Emoji"))
           ;; East Asia: 你好, 早晨, こんにちは, 안녕하세요
-          (set-fontset-font t 'han      (font-spec :family "TsangerJinKai02"   ))
-          (set-fontset-font t 'kana     (font-spec :family "TsangerJinKai02"   ))
-          (set-fontset-font t 'hangul   (font-spec :family "TsangerJinKai02"   ))
+          (set-fontset-font t 'han      (font-spec :family "LXGW Wenkai"   ))
+          (set-fontset-font t 'kana     (font-spec :family "LXGW WenKai"   ))
+          (set-fontset-font t 'hangul   (font-spec :family "LXGW WenKai"   ))
           (set-fontset-font t 'cjk-misc (font-spec :family "Noto Serif CJK SC" ))
           ;; Cyrillic: Привет, Здравствуйте, Здраво, Здравейте
           (set-fontset-font t 'cyrillic (font-spec :family "Noto Serif"         ))
