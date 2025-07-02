@@ -528,15 +528,18 @@
 #+end_src
 ** alpha
 #+begin_src emacs-lisp :tangle packages.el
+(:if IS-MAC
 (package! transwin)
+)
 #+end_src
 #+begin_src emacs-lisp :tangle config.el
-(use-package! transwin
-  :config
-  (setq transwin--current-alpha 80)
-  (setq transwin-delta-alpha 5)
-  (setq transwin-parameter-alpha 'alpha-background)
-)
+(:if IS-MAC
+    (use-package! transwin
+      :config
+      (setq transwin--current-alpha 80)
+      (setq transwin-delta-alpha 5)
+      (setq transwin-parameter-alpha 'alpha-background)
+      (modify-all-frames-parameters '(('alpha-background 80)))))
 #+end_src
 * Editor
 ** 分词
