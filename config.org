@@ -528,12 +528,10 @@
 #+end_src
 ** alpha
 #+begin_src emacs-lisp :tangle packages.el
-(:if IS-MAC
-(package! transwin)
-)
+(if IS-MAC (package! transwin))
 #+end_src
 #+begin_src emacs-lisp :tangle config.el
-(:if IS-MAC
+(if IS-MAC
     (use-package! transwin
       :config
       (setq transwin--current-alpha 80)
