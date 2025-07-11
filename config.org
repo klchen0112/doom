@@ -432,6 +432,7 @@
     )
     (add-hook!  'after-setting-font-hook
           ;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴
+          (set-fontset-font t 'symbol   (font-spec :family "Apple Symobols"     ))
           (set-fontset-font t 'symbol   (font-spec :family "Apple Color Emoji"  ))
           (set-fontset-font t 'symbol   (font-spec :family "Symbola"            ))
           (set-fontset-font t 'symbol   (font-spec :family "Noto Color Emoji"   ))
