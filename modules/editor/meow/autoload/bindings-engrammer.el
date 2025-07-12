@@ -137,7 +137,7 @@
    '("q" . meow-quit)
    '("Q" . meow-search)
    '("r" . meow-replace)
-   '("r" . meow-swap-grab)
+   '("R" . meow-swap-grab)
    '("s" . meow-right)
    '("S" . meow-right-expand)
    '("t" . meow-next)
