@@ -124,7 +124,7 @@
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        (lookup +dictionary +docsets +offline)             ; navigate your code and its documentation
-       (lsp +peek)              ; M-x vscode
+      (lsp +peek +eglot)              ; M-x vscode
        (magit             ; a git porcelain for Emacs
         +forge             ; interface with git forges
        )
@@ -161,7 +161,7 @@
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        (emacs-lisp; drown in parentheses
-        ;;+tree-sitter
+        +tree-sitter
         )
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
@@ -1468,39 +1468,9 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+end_src
 ** Lsp booster
 #+begin_src emacs-lisp :tangle config.el
-;; (after! lsp-mode
-  ;; (setq lsp-ui-doc-show-with-cursor t)
-  ;; (defun lsp-booster--advice-json-parse (old-fn &rest args)
-  ;;   "Try to parse bytecode instead of json."
-  ;;   (or
-  ;;    (when (equal (following-char) ?#)
-  ;;    (let ((bytecode (read (current-buffer))))
-  ;;      (when (byte-code-function-p bytecode)
-  ;;        (funcall bytecode))))
-  ;;    (apply old-fn args)))
-  ;; (advice-add (if (progn (require 'json)
-  ;;                        (fboundp 'json-parse-buffer))
-  ;;                 'json-parse-buffer
-  ;;               'json-read)
-  ;;             :around
-  ;;             #'lsp-booster--advice-json-parse)
-
-  ;; (defun lsp-booster--advice-final-command (old-fn cmd &optional test?)
-  ;;   "Prepend emacs-lsp-booster command to lsp CMD."
-  ;;   (let ((orig-result (funcall old-fn cmd test?)))
-  ;;     (if (and (not test?)                             ;; for check lsp-server-present?
-  ;;              (not (file-remote-p default-directory)) ;; see lsp-resolve-final-command, it would add extra shell wrapper
-  ;;              lsp-use-plists
-  ;;              (not (functionp 'json-rpc-connection))  ;; native json-rpc
-  ;;              (executable-find "emacs-lsp-booster"))
-  ;;         (progn
-  ;;           (when-let ((command-from-exec-path (executable-find (car orig-result))))  ;; resolve command from exec-path (in case not found in $PATH)
-  ;;             (setcar orig-result command-from-exec-path))
-  ;;           (message "Using emacs-lsp-booster for %s!" orig-result)
-  ;;           (cons "emacs-lsp-booster" orig-result))
-  ;;       orig-result)))
-  ;; (advice-add 'lsp-resolve-final-command :around #'lsp-booster--advice-final-command)
-;; )
+(use-package! eglot-booster
+	:after eglot
+	:config	(eglot-booster-mode))
 #+end_src
 * Lang
 ** Docstr
@@ -1528,6 +1498,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   :after python
   :config
   (lazy-ruff-global-mode t)
+  (add-to-list 'lazy-ruff-org-src-languages "jupyter-python")
 )
 #+end_src
 
@@ -1542,10 +1513,12 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   :defer t
   :after python
   :config
-  (add-hook 'python-mode-hook
+  (add-hook 'python-base-mode-hook
             (lambda ()
               (setq-local python-shell-interpreter (pet-executable-find "python")
                           python-shell-virtualenv-root (pet-virtualenv-root))
+              (pet-eglot-setup)
+              (eglot-ensure)
               (pet-flycheck-setup)
               (flycheck-mode)
 
@@ -1555,15 +1528,12 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
               (setq-local lsp-pyright-python-executable-cmd python-shell-interpreter
                           lsp-pyright-venv-path python-shell-virtualenv-root)
 
-              (lsp)
 
               (setq-local dap-python-executable python-shell-interpreter)
 
               (setq-local python-pytest-executable (pet-executable-find "pytest"))
-
               )
-            )
-  )
+            ))
 (add-hook 'change-major-mode-after-body-hook 'envrc-mode)
 #+end_src
 ** Latex mode
