@@ -1693,6 +1693,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! telega :built-in t)
+(package! ement)
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -1702,6 +1703,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   ;;:config
   ;;(setq telega-server-libs-prefix)
 )
+(use-package! ement
+  :defer t)
 #+end_src
 * AI+X
 ** org ai
