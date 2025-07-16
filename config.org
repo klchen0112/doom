@@ -539,7 +539,8 @@
       (setq transwin--current-alpha 80)
       (setq transwin-delta-alpha 5)
       (setq transwin-parameter-alpha 'alpha-background)
-      (modify-all-frames-parameters '(('alpha-background 80)))))
+      ;; (modify-all-frames-parameters '(('alpha-background 80)))
+      ))
 #+end_src
 * Editor
 ** 分词
