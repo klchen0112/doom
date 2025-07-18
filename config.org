@@ -934,9 +934,8 @@ citar need vertico
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
     (progn
-      (package! websocket-bridge :recipe (:host github :repo "ginqi7/websocket-bridge") :pin "535364f8fefd791b22525b7640d291e88c80179d")
-     (package! org-reminders :recipe (:host github :repo "ginqi7/org-reminders") :pin "7d317b5591303265d86022de62498826285ba2c9"))
-  )
+      (package! websocket-bridge :built-in t)
+      (package! org-reminders :built-in t)))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
