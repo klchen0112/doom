@@ -921,7 +921,7 @@ citar need vertico
 #+end_src
 ** habit
 #+begin_src emacs-lisp :tangle packages.el
-(package! better-org-habit :recipe (:host github :repo "vberezhnev/better-org-habit.el" ))
+(package! better-org-habit :recipe (:host github :repo "vberezhnev/better-org-habit.el" ) :pin "d36477b5600b8011b32190f965f3d73d77b3ee97")
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
