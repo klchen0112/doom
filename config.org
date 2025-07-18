@@ -1479,7 +1479,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+end_src
 ** Lsp booster
 #+begin_src emacs-lisp :tangle packages.el
-(package! eglot-booster)
+(package! eglot-booster :recipe (:host github :repo "jdtsmith/eglot-booster") :pin "cab7803c4f0adc7fff9da6680f90110674bb7a22")
 #+end_src
 #+begin_src emacs-lisp :tangle config.el
 (use-package! eglot-booster
