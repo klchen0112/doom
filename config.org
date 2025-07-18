@@ -1478,6 +1478,9 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
     ;;      ursor_offset 'my-codeium/document/cursor_offset))
 #+end_src
 ** Lsp booster
+#+begin_src emacs-lisp :tangle packages.el
+(package! eglot-booster)
+#+end_src
 #+begin_src emacs-lisp :tangle config.el
 (use-package! eglot-booster
 	:after eglot
