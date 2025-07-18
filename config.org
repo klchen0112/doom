@@ -956,10 +956,13 @@ citar need vertico
 2. 自动创建笔记的创建时间和修改时间
 3. 跨文件的引用，能够实现笔记的一处修改，处处修改
    - 实现效果不太好
-
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-roam-ui)
+#+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-
+(use-package! websocket
+    :after org-roam)
 
 (use-package! org-roam
   :after org
