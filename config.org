@@ -919,7 +919,17 @@ citar need vertico
  'org-babel-load-languages
  '((mermaid . t)))
 #+end_src
+** habit
+#+begin_src emacs-lisp :tangle packages.el
+(package! better-org-habit :recipe (:host github :repo "vberezhnev/better-org-habit.el" ))
+#+end_src
 
+#+begin_src emacs-lisp :tangle config.el
+(use-package! better-org-habit
+  :defer t
+  :after org-roam
+  )
+#+end_src
 * org-roam
 
 ** org-roam settings
