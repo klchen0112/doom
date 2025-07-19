@@ -944,7 +944,7 @@ citar need vertico
   :after org
   :defer t
   :config
-  (setq org-reminders-sync-file (concat org-directory "/Reminders.org")))
+  (setq org-reminders-sync-file (concat org-directory "Reminders.org")))
 )
 #+end_src
 * org-roam
