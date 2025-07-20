@@ -1427,6 +1427,26 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 	:after eglot
 	:config	(eglot-booster-mode))
 #+end_src
+** aidar
+#+begin_src emacs-lisp :tangle packages.el
+(package! aider)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! aider
+  :config
+  ;; For latest claude sonnet model
+  ;; Or chatgpt model
+  ;; (setq aider-args '("--model" "o4-mini"))
+  ;; (setenv "OPENAI_API_KEY" <your-openai-api-key>)
+  ;; Or use your personal config file
+  (setq aider-args `("--config" ,(expand-file-name "~/.aider.conf.yml")))
+  ;; ;;
+  (aider-magit-setup-transients) ;; add aider magit function to magit menu
+  ;; auto revert buffer
+  (global-auto-revert-mode 1)
+  (auto-revert-mode 1))
+#+end_src
 * Lang
 ** Docstr
 #+begin_src emacs-lisp :tangle packages.el
