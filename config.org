@@ -87,7 +87,7 @@
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
-       ;; snippets          ; my elves. They type so I don't have to
+       snippets          ; my elves. They type so I don't have to
        word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
@@ -1367,13 +1367,13 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 * completion
 ** tempel
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (package! tempel)
 (package! tempel-collection)
 (package! eglot-tempel)
 #+end_src
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp :tangle no
 ;; Configure Tempel
 (use-package!
  tempel
