@@ -73,8 +73,8 @@
        zen               ; distraction-free coding or writing
 
        :editor
-       (meow  +engrammer +override +leader)
-       ;; (evil +everywhere); come to  dark side, we have cookies
+       ;; (meow  +engrammer +override +leader)
+       (evil +everywhere); come to  dark side, we have cookies
        file-templates    ; auto-snippets for files
        fold              ; (nigh) universal code folding
        (format ; automated prettiness
