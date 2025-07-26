@@ -73,8 +73,8 @@
        zen               ; distraction-free coding or writing
 
        :editor
-       ;; (meow  +engrammer +override +leader)
-       (evil +everywhere); come to  dark side, we have cookies
+       (meow  +qwerty +override +leader)
+       ;; (evil +everywhere); come to  dark side, we have cookies
        file-templates    ; auto-snippets for files
        fold              ; (nigh) universal code folding
        (format ; automated prettiness
@@ -631,6 +631,17 @@
   ;; Enable debug messages
   (setq flyover-debug nil)
   )
+#+end_src
+** meow-tree-sitter
+#+begin_src emacs-lisp :tangle packages.el
+(package! meow-tree-sitter)
+#+end_src
+
+#+begin_src emacs-lisp :tangle config.el
+(use-package! meow-tree-sitter
+  :config
+  (meow-tree-sitter-register-defaults)
+)
 #+end_src
 * Biblio
 ** init biblio
