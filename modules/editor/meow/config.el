@@ -196,7 +196,7 @@ switch to MOTION state."
     ;; A minor tweak - 'SPC c' will translate to 'C-c' rather than invoking
     ;; `doom-leader-code-map'. So we must use another prefix key. 'k' was chosen
     ;; because it wasn't already in use, and because it makes
-    ;; `+lookup/documentation', a very handy command, easy to invoke
+    ;; `+lookup/documentation' a very handy command, easy to invoke
     ;; ('SPC k k').
     ;; (We need a hook since this module is loaded before the bindings are, due to ':demand')
     (add-hook! 'doom-after-modules-config-hook

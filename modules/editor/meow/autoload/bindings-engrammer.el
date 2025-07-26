@@ -1,4 +1,4 @@
-;;; editor/meow/autoload/bindings-qwerty.el -*- lexical-binding: t; -*-
+;;; editor/meow/autoload/bindings-engrammer.el -*- lexical-binding: t; -*-
 ;;;###autoload
 (defconst meow-cheatsheet-layout-engrammer
   '((<TLDE> "[" "{")
