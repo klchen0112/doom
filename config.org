@@ -424,7 +424,7 @@
 
 (cond
   ((or IS-MAC IS-LINUX)
-    (setq doom-font  (font-spec :family "M+CodeLat50 Nerd Font Mono" :size 16)
+    (setq doom-font  (font-spec :family "M+1Code Nerd Font Mono Propo" :size 16)
           ;; doom-big-font (font-spec :family "Iosevka"  :size 28)
           doom-variable-pitch-font (font-spec :family "CMU Typewriter Text"  :size 18)
           ;;doom-unicode-font (font-spec :family "FZSongKeBenXiuKai-R-GBK" :weight 'light :slant 'italic :size 21)
@@ -449,12 +449,12 @@
           ;; Cyrillic: Привет, Здравствуйте, Здраво, Здравейте
           (set-fontset-font t 'cyrillic (font-spec :family "Noto Serif"         ))
   ))
-  ((IS-WINDOWS)
-    (setq doom-font (font-spec :family "Cascadia Code"  :size 23)
-        doom-big-font (font-spec :family "Cascadia Code"  :size 25)
-        doom-variable-pitch-font (font-spec :family "Cascadia Code" :size 23)
-        doom-unicode-font (font-spec :family "霞鹜文楷等宽" :weight 'light :size 23)
-        doom-serif-font (font-spec :family "Cascadia Code"  :size 23)))
+  (IS-WINDOWS
+    (setq doom-font (font-spec :family "M+1Code Nerd Font Mono Propo"  :size 16)
+        doom-big-font (font-spec :family "M+1Code Nerd Font Mono Propo"  :size 16)
+        doom-variable-pitch-font (font-spec :family "Cascadia Code" :size 16)
+        doom-unicode-font (font-spec :family "霞鹜文楷等宽" :weight 'light :size 16)
+        doom-serif-font (font-spec :family "M+1Code Nerd Font Mono Propo"  :size 16)))
 )
 
 #+end_src
