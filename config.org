@@ -1,4 +1,4 @@
-#+TITLE: config
+/#+TITLE: config
 #+AUTHOR: klchen0112
 #+EMAIL: klchen0112@gmail.com
 #+startup: fold
@@ -224,7 +224,7 @@
                +pyright
                ;; +pyenv
                +cpython
-               ;; (if (not IS-MAC) +conda)
+               +conda
                ;;+poetry
                ;;+tree-sitter
                )            ; beautiful is better than ugly
