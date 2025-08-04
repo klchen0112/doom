@@ -424,7 +424,7 @@
 
 (cond
   ((or IS-MAC IS-LINUX)
-    (setq doom-font  (font-spec :family "M+1Code Nerd Font Mono Propo" :size 16)
+    (setq doom-font  (font-spec :family "M+1Code Nerd Font Mono Prop" :size 16)
           ;; doom-big-font (font-spec :family "Iosevka"  :size 28)
           doom-variable-pitch-font (font-spec :family "CMU Typewriter Text"  :size 18)
           ;;doom-unicode-font (font-spec :family "FZSongKeBenXiuKai-R-GBK" :weight 'light :slant 'italic :size 21)
