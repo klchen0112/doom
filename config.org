@@ -481,15 +481,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-dracula)
-;; (setq doom-theme 'doom-solarized-light)
-(setq doom-themes-dark '(doom-dracula doom-vibrant doom-city-lights doom-moonlight doom-horizon
-                         doom-one doom-solarized-dark doom-palenight doom-spacegrey
-                         doom-old-hope doom-oceanic-next doom-monokai-pro doom-material doom-henna
-                         doom-ephemeral doom-zenburn doom-peacock doom-1337 doom-rose-pine doom-rose-pine-moon ))
+(setq doom-themes-dark '(doom-tomorrow-night doom-sourcerer doom-challenger-deep doom-gruvbox doom-xcode doom-dark+ doom-zenburn doom-Iosvkem doom-nord doom-opera doom-vibrant doom-wilmersdorf doom-one doom-dracula doom-henna doom-spacegrey doom-laserwave doom-material-dark doom-tokyo-night doom-monokai-pro doom-old-hope doom-horizon doom-rouge doom-badger))
+(setq doom-themes-light '(doom-one-light doom-acario-light doom-feather-light doom-ayu-light doom-gruvbox-light doom-nord-light doom-solarized-light doom-opera-light doom-tomorrow-day doom-flatwhite))
 
-(setq doom-themes-light '(doom-one-light doom-solarized-light  doom-opera-light doom-rose-pine-dawn))
 
 (defun random-choice (items)
   "Random choice a list"
@@ -509,7 +503,7 @@
 
 (after! doom-themes
   (if IS-MAC (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-    (setq doom-theme 'doom-nano-light)))
+    (setq doom-theme (random-choice doom-themes-light))))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -945,18 +939,20 @@ citar need vertico
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
     (progn
-      (package! websocket-bridge :built-in t)
-      (package! org-reminders :built-in t)))
+      (package! websocket-bridge)
+      (package! org-reminders)
+      )
+  )
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
 (if IS-MAC
-(use-package! org-reminders
-  :after org
-  :defer t
-  :config
-  (setq org-reminders-sync-file (concat org-directory "Reminders.org")))
-)
+    (use-package! org-reminders
+      :after org
+      :defer t
+      :config
+      (setq org-reminders-sync-file (concat org-directory "Reminders.org")))
+  )
 #+end_src
 * org-roam
 
@@ -1347,9 +1343,9 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 2. 加入了中英文自动检测
 *** Package
 
-#+begin_src emacs-lisp :tangle no
-;; (package! rime :built-in t)
-;; (package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
+#+begin_src emacs-lisp :tangle packages.el
+(package! rime)
+(package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
 #+end_src
 *** rime init
 
@@ -1373,6 +1369,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;;   :defer t
 ;;   :config
 ;;   (rime-regexp-mode t))
+
+#+end_#+begin_src
 
 #+end_src
 * completion
