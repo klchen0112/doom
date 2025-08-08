@@ -1349,29 +1349,26 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 #+end_src
 *** rime init
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle config.el
 
-;; (use-package! rime
-;;  :defer t
-;;  :bind
-;;  (:map rime-mode-map
-;;        ("S- " . 'rime-send-keybinding))
-;;  :config
-;;  (setq rime-user-data-dir (concat doom-data-dir "Rime"))
-;;  (setq rime-show-candidate 'posframe)
-;;  (setq rime-show-preedit 'inline)
-;;  (setq default-input-method "rime")
-;;  (setq rime-inline-ascii-trigger 'shift-r)
-;;  (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
-;; )
+(use-package! rime
+ :defer t
+ :bind
+ (:map rime-mode-map
+       ("S- " . 'rime-send-keybinding))
+ :config
+ (setq rime-user-data-dir (concat doom-data-dir "Rime"))
+ (setq rime-show-candidate 'posframe)
+ (setq rime-show-preedit 'inline)
+ (setq default-input-method "rime")
+ (setq rime-inline-ascii-trigger 'shift-r)
+ (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
+)
 
-;; (use-package rime-regexp
-;;   :defer t
-;;   :config
-;;   (rime-regexp-mode t))
-
-#+end_#+begin_src
-
+(use-package rime-regexp
+  :after rime
+  :config
+  (rime-regexp-mode t))
 #+end_src
 * completion
 ** tempel
@@ -1676,7 +1673,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 * APP
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! telega :built-in t)
+(package! telega)
 (package! ement)
 #+end_src
 
@@ -1785,3 +1782,4 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;;(global-activity-watch-mode)
 ;;)
 #+end_src
+b
