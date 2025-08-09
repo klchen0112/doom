@@ -106,7 +106,7 @@
                                         ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       vterm             ; the best terminal emulation in Emacs
+       ;; vterm             ; the best terminal emulation in Emacs
 
        :checkers
        (syntax +childframe +icons +flymake)               ; tasing you for every semicolon you forget
@@ -1673,7 +1673,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 * APP
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! telega :built-in)
+(package! telega :built-in t)
 (package! ement)
 #+end_src
 
