@@ -129,6 +129,7 @@
         +forge             ; interface with git forges
        )
        make              ; run make tasks from Emacs
+       llm
        ;;pass              ; password manager for nerds
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -1706,7 +1707,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   (org-ai-install-yasnippets)
 )
 #+end_src
-** GPT EL
 
 
 * Alter/Message
