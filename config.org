@@ -939,8 +939,8 @@ citar need vertico
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
     (progn
-      (package! websocket-bridge)
-      (package! org-reminders)
+      (package! websocket-bridge :built-in)
+      (package! org-reminders :built-in)
       )
   )
 #+end_src
