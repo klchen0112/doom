@@ -62,7 +62,8 @@
        ophints           ; highlight the region an operation acts on
        (popup ; tame sudden yet inevitable temporary windows
         +all
-        +defaults)          ;;
+        +defaults)
+       smooth-scroll
        ;;tabs              ; a tab bar for Emacs
        ;;(treemacs +lsp)       ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various language
@@ -1358,7 +1359,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
  (:map rime-mode-map
        ("S- " . 'rime-send-keybinding))
  :config
- (setq rime-user-data-dir (concat doom-data-dir "Rime"))
+ (setq rime-user-data-dir (concat doom-local-dir "Rime"))
  (setq rime-show-candidate 'posframe)
  (setq rime-show-preedit 'inline)
  (setq default-input-method "rime")
