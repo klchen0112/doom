@@ -939,8 +939,8 @@ citar need vertico
 #+begin_src emacs-lisp :tangle packages.el
 (if IS-MAC
     (progn
-      (package! websocket-bridge :built-in)
-      (package! org-reminders :built-in)
+      (package! websocket-bridge :built-in t)
+      (package! org-reminders :built-in t)
       )
   )
 #+end_src
@@ -1344,8 +1344,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 *** Package
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! rime)
-(package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "546ae861134d3084fbe9379412f79353380ab31a")
+(package! rime :built-in t)
+(package! rime-regexp :recipe (:host github :repo "colawithsauce/rime-regexp.el") :pin "02ee707ecd35b7d8436bf15abdb5b343d7101deb")
 #+end_src
 *** rime init
 
@@ -1673,7 +1673,7 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 * APP
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! telega)
+(package! telega :built-in)
 (package! ement)
 #+end_src
 
@@ -1737,7 +1737,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   :defer t)
 
 (use-package! magit
-  :ensure t
   :after nerd-icons
   :custom
   (magit-format-file-function #'magit-format-file-nerd-icons))
@@ -1782,4 +1781,3 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;;(global-activity-watch-mode)
 ;;)
 #+end_src
-b
