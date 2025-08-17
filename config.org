@@ -635,6 +635,7 @@
 
 #+begin_src emacs-lisp :tangle config.el
 (use-package! meow-tree-sitter
+  :after meow
   :config
   (meow-tree-sitter-register-defaults)
 )
