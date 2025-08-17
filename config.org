@@ -1311,8 +1311,18 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
 ;;  (org-roam-slipbox-tag-mode +1))
 
 #+end_src
+** org-workbench
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-workbench :recipe (:host github :repo "yibie/org-workbench") :pin "4ce1fcbefccf74d9e778508e0b75a35dec4444fc")
 
+#+end_src
 
+#+begin_src emacs-lisp :tangle config.el
+(use-package! org-workbench
+  :after org-roam
+  :config
+  (org-workbench-setup))
+#+end_src
 * Input Method
 ** smart input source
 
