@@ -1,4 +1,4 @@
-/#+TITLE: config
+#+TITLE: config
 #+AUTHOR: klchen0112
 #+EMAIL: klchen0112@gmail.com
 #+startup: fold
@@ -125,7 +125,7 @@
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        (lookup +dictionary +docsets +offline)             ; navigate your code and its documentation
-      (lsp +peek +eglot)              ; M-x vscode
+      (lsp +peek +eglot +booster)              ; M-x vscode
        (magit             ; a git porcelain for Emacs
         +forge             ; interface with git forges
        )
@@ -1437,15 +1437,6 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
   :preface (eglot-tempel-mode)
   :init
   (eglot-tempel-mode t))
-#+end_src
-** Lsp booster
-#+begin_src emacs-lisp :tangle packages.el
-(package! eglot-booster :recipe (:host github :repo "jdtsmith/eglot-booster") :pin "cab7803c4f0adc7fff9da6680f90110674bb7a22")
-#+end_src
-#+begin_src emacs-lisp :tangle config.el
-(use-package! eglot-booster
-	:after eglot
-	:config	(eglot-booster-mode))
 #+end_src
 ** aidar
 #+begin_src emacs-lisp :tangle packages.el
