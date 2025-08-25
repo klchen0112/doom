@@ -1371,7 +1371,10 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
  (:map rime-mode-map
        ("S- " . 'rime-send-keybinding))
  :config
- (setq rime-user-data-dir (concat doom-local-dir "Rime"))
+ (if IS-LINUX
+  (setq rime-share-data-dir "~/.local/share/fcitx5/rime")
+  (setq rime-share-data-dir "~/Library/Rime")
+  )
  (setq rime-show-candidate 'posframe)
  (setq rime-show-preedit 'inline)
  (setq default-input-method "rime")
