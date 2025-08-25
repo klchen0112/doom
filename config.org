@@ -274,7 +274,7 @@
 
 #+begin_src emacs-lisp :tangle packages.el
 ;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
+;;; lisp/packages.el
 #+end_src
 * config.el
 #+begin_src emacs-lisp :tangle config.el
@@ -312,7 +312,7 @@
       ;; scroll-preserve-screen-position 'always     ; Don't have `point' jump around
       scroll-preserve-screen-position 'always     ; Don't have `point' jump around
       word-wrap-by-category t                     ; Different languages live together happily
-      scroll-margin 2)                            ; It's nice to maintain a little margin
+      )                            ; It's nice to maintain a little margin
 (setq which-key-idle-delay 0.3) ;; I need the help, I really do
 
 ;; Drag text from emacs to other apps
