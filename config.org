@@ -1516,13 +1516,13 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
               (setq-local lsp-pyright-python-executable-cmd python-shell-interpreter
                           lsp-pyright-venv-path python-shell-virtualenv-root)
 
-
+              (lsp)
               (setq-local dap-python-executable python-shell-interpreter)
 
               (setq-local python-pytest-executable (pet-executable-find "pytest"))
-              )
-            ))
-(add-hook 'change-major-mode-after-body-hook 'envrc-mode)
+              ))
+  )
+(add-hook! 'change-major-mode-after-body-hook 'envrc-mode)
 #+end_src
 ** Latex mode
 *** Latex Preview
