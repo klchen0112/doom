@@ -226,7 +226,7 @@
                +pyright
                ;; +pyenv
                +cpython
-               +conda
+               ;;+conda
                ;;+poetry
                ;;+tree-sitter
                )            ; beautiful is better than ugly
@@ -811,7 +811,6 @@ citar need vertico
 ;; change `org-directory'. It must be set before org loads!
 
 (use-package! org
-  :defer t
   :config
   (setq org-directory "~/org/")
   ;; pretty org files
