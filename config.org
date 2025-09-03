@@ -1371,8 +1371,8 @@ Refer to \=`org-agenda-prefix-format\=' for more information."
        ("S- " . 'rime-send-keybinding))
  :config
  (if IS-LINUX
-  (setq rime-share-data-dir "~/.local/share/fcitx5/rime")
-  (setq rime-share-data-dir "~/Library/Rime")
+  (setq rime-user-data-dir "~/.local/share/fcitx5/rime")
+  (setq rime-user-data-dir "~/Library/Rime")
   )
  (setq rime-show-candidate 'posframe)
  (setq rime-show-preedit 'inline)
