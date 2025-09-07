@@ -125,7 +125,10 @@
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        (lookup +dictionary +docsets +offline)             ; navigate your code and its documentation
-      (lsp +peek +eglot +booster)              ; M-x vscode
+      (lsp +peek
+           ;;+eglot
+           +booster
+        )              ; M-x vscode
        (magit             ; a git porcelain for Emacs
         +forge             ; interface with git forges
        )
