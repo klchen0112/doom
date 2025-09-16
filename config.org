@@ -126,7 +126,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        (lookup +dictionary +docsets +offline)             ; navigate your code and its documentation
       (lsp +peek
-           ;;+eglot
+           +eglot
            +booster
         )              ; M-x vscode
        (magit             ; a git porcelain for Emacs
